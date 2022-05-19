@@ -1,0 +1,202 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+	
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image: linear-gradient(90deg, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.65) 100%), url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/Konsolidaciya.jpg')")
+					h1 Консолидация
+					.text-big <?php echo category_description(36); ?>
+						
+	section.container.page_bottom.js-card-menu-container
+		//- .row
+		//- 	.col-12.consolidation_text
+		//- 		.title
+		//- 			p
+		//- 				b Консолидация
+		//- 		p Мы крупнейший в мире поставщик компонентов и адаптированных решений в области управляющих компонентов для ключевых секторов промышленности.  Везде, где точность, скорость и надежность имеют первостепенное значение, мы предлагаем исключительные решения, повышающие производительность и эффективность производственных систем.
+		
+		.row.page-brand.solutions
+			| <?php $sub_cats = get_categories( array('child_of' => 36, 'hide_empty' => 0) ); ?>
+			|
+			| <?php if( $sub_cats ):
+			|	foreach( $sub_cats as $cat ) : ?>
+			|
+
+			|
+			| <?php $arg = array(
+			|   'category'=> $cat->term_id,
+			|   'orderby' => 'date',
+			|   'numberposts' => 1,
+			| );
+			| 
+			| $posts = get_posts($arg);
+			| if ($posts) :
+			| foreach ($posts as $post) :
+			| setup_postdata($post);
+			| ?>
+			|
+
+			.col-xl-3.col-md-4
+
+			
+				a(href!='<?php echo "#" . $cat->slug . "_" . $post->post_name ?>').solution-card(style='background-color: #BE1D25')
+					.solution-card_inner
+						.solution-card_trumb
+							img(src!='<?php echo get_field("category-trumb", "category_" . $cat->term_id) ?>')
+						.solution-card_title
+							h5 <?php echo $cat->name ?>
+
+			| <?php endforeach;
+			| endif; ?>
+			|
+
+			| <?php 
+			| endforeach;
+			| endif;
+			| ?>
+
+		//- .row
+		//- 	.col-12.consolidation_text
+		//- 		p Обратитесь к нам, если вы торгующая компания, производитель или монтажная организация, и требуется комплексное предложение по поставке оборудования с лучшими условиями.
+
+
+	section.container.js-card-menu-inside-container.page-consolidation
+		.row
+			.col-12.page_middle
+				.sidebar
+					|
+					| <?php 
+					| if( $sub_cats ):
+					|	foreach( $sub_cats as $cat ) : 
+					| ?>
+					|
+
+					.side-menu.is-hidden
+						.title <?php echo $cat->name ?>
+						.menu-wrapper
+							|
+							| <?php
+							| 	$arg = array(
+							|     'category'=> $cat->term_id,
+							|     'orderby' => 'date',
+							|     'numberposts' => 10,
+							|   );
+							| 
+							| $posts = get_posts($arg);
+							| if ($posts) : ?>
+
+							ul
+								|
+								| <?php
+								| foreach ($posts as $post) :
+								| setup_postdata($post);
+								| ?>
+								|
+							
+								li.menu-item
+									a(href!='<?php echo "#" . $cat->slug . "_" . $post->post_name ?>').title <?php the_title() ?>					
+
+								| <?php endforeach;
+								| endif;
+								| ?>
+								|
+
+					| <?php 
+					| endforeach;
+					| endif;
+					| ?>
+																																
+				.right-content
+					|
+					| <?php 
+					| if( $sub_cats ):
+					|	foreach( $sub_cats as $cat ) : 
+					| ?>
+					|
+
+					|
+					| <?php
+					| 	$arg = array(
+					|     'category'=> $cat->term_id,
+					|     'orderby' => 'date',
+					|     'numberposts' => 10,
+					|   );
+					| 
+					| $posts = get_posts($arg);
+					| if ($posts) : ?>
+
+
+					|
+					| <?php
+					| foreach ($posts as $post) :
+					| setup_postdata($post);
+					| ?>
+					|
+							
+					.js-menu-pages(data-page!='<?php echo $cat->slug . "_" . $post->post_name ?>' data-title!='<?php the_title() ?>')
+						//- .article_title <?php the_title() ?>
+						.article_trumb 
+							img(src!='<?php echo get_the_post_thumbnail_url() ?>')
+						.article
+							<?php the_content() ?>
+							button.js-popUp-open Направить запрос
+
+					| <?php endforeach;
+					| endif;
+					| ?>
+					|
+
+					| <?php 
+					| endforeach;
+					| endif;
+					| ?>
+
+	section#popUp.popUp
+		.popUp_wrapper
+			//- .popUp_close
+			.popUp_inner
+				.popUp-form
+					form.form
+						.popUp-form_title Связаться с нами
+						.popUp-form_descr
+							| Наши эксперты ответят вам, как только обработают ваше сообщение.
+
+						.pos-rel
+							input(name="name" placeholder="" required).form__inputs.name
+							label.form__label Ваше имя
+							.error Напишите свое имя
+						.pos-rel
+							input(name="email" placeholder="" required).form__inputs.e-mail
+							label.form__label Ваш email
+							.error Напишите ваш email
+						.pos-rel
+							textarea(name="message" placeholder="" required).textarea.form__inputs.name
+							label.form__label Ваше сообщение
+							//- .error Напишите сообщение
+						.form__agree
+							input(type="checkbox").agree.form__checkbox
+							label(for="argee") соглашаюсь с условиями 
+								a(href="/docs" target="_blank") Политики конфиденциальности 
+							.error Подтвердите свое согласие
+						.form__btn
+							//- input(type="hidden" name="subject" value="Консолидация")
+							button.submit
+								b Направить запрос
+					
+					.form_send-success
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Ваше сообщение отправлено
+						.descr Наши эксперты ответят вам, как только обработают ваше сообщение.
+						button.btn.js-return-form.popUp_close Хорошо
+					.form_send-error
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Ваше сообщение не отправлено
+						.descr Что-то пошло не так, повторите попытку.
+						button.btn.js-return-form Повторить

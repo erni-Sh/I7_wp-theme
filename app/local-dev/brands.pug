@@ -1,0 +1,179 @@
+
+extends ./includes/tmpl.pug
+
+block main
+	include ./includes/mixins.pug
+
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Бренды
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style='background-image:url("/img/backgrounds/top-background_3.jpg")')
+					h1 Бренды
+					.text-big
+						| В наш портфель продукции мирового класса входят Norgren, Buschjost, FAS, Herion и Maxseal. 
+						| Доказав свою ценность на протяжении многих лет, они стали одними из самых надежных 
+						| имен в области управления жидкостями и движением. Благодаря этому мы можем 
+						| помочь нашим клиентам решать величайшие инженерные задачи 
+						| мира - надежно, безопасно и эффективно.
+
+	section.container.page_middle.js-card-menu-container
+		.row.page-brand.solutions
+			mixin solutionCard(img, brand, link)
+				.col-xl-3.col-md-4
+					a(href!= link).solution-card.js-card-menu-click(style='background-color: ' + brand[2])
+						.solution-card_inner
+							.solution-card_trumb
+								img(src!= img)
+							.solution-card_logo
+								img(src!= brand[0]).icon
+								img(src!= brand[1]).logo
+							.solution-card_descr
+								p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных клапанов и системных решений для жидких и газообразных сред.
+
+			+solutionCard(
+				'/img/solutions/oil.jpg', brandNorgren, 'norgren')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png', brandBuschjost, 'buschjost')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png', brandHerion, 'herion')
+			+solutionCard(
+				'/img/solutions/Food-industry.png', brandMaxseal, 'maxseal')
+			+solutionCard(
+				'/img/solutions/oil.jpg', brandTompson, 'tompson')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png', brandImf, 'imf')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png', brandFas, 'fas')
+			+solutionCard(
+				'/img/solutions/Food-industry.png', brandKip, 'kip')
+			+solutionCard(
+				'/img/solutions/oil.jpg', brandKloehn, 'kloehn')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png', brandPneumatex, 'pneumatex')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png', brandTa, 'ta')
+			+solutionCard(
+				'/img/solutions/Food-industry.png', brandHeimeier, 'heimeier')
+			+solutionCard(
+				'/img/solutions/oil.jpg', brandAircom, 'aircom')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png', brandAquasermo, 'aquasermo')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png', brandLinak, 'linak')
+
+	section.container.js-card-menu-inside-container
+		.row.page-brand
+			.col-12.page_middle
+				.sidebar
+					.menu-manufacturers.swiper-container
+						ul.swiper-wrapper
+							li.swiper-slide.manufacturer
+								a(href!='norgren').js-menu-click
+									img(src!='/img/icons/manufacturers/norgren_icon.svg').icon
+									img(src!='/img/icons/manufacturers/norgren_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='buschjost').js-menu-click
+									img(src!='/img/icons/manufacturers/buschjost_icon.svg').icon
+									img(src!='/img/icons/manufacturers/buschjost_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='herion').js-menu-click
+									img(src!='/img/icons/manufacturers/herion_icon.svg').icon
+									img(src!='/img/icons/manufacturers/herion_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='maxseal').js-menu-click
+									img(src!='/img/icons/manufacturers/maxseal_icon.svg').icon
+									img(src!='/img/icons/manufacturers/maxseal_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='tompson').js-menu-click
+									img(src!='/img/icons/manufacturers/tompson_icon.svg').icon
+									img(src!='/img/icons/manufacturers/tompson_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='imf').js-menu-click
+									img(src!='/img/icons/manufacturers/imf_icon.svg').icon
+									img(src!='/img/icons/manufacturers/imf_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='fas').js-menu-click
+									img(src!='/img/icons/manufacturers/fas_icon.svg').icon
+									img(src!='/img/icons/manufacturers/fas_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='kip').js-menu-click
+									img(src!='/img/icons/manufacturers/kip_icon.svg').icon
+									img(src!='/img/icons/manufacturers/kip_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='kloehn').js-menu-click
+									img(src!='/img/icons/manufacturers/kloehn_icon.svg').icon
+									img(src!='/img/icons/manufacturers/kloehn_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='pneumatex').js-menu-click
+									img(src!='/img/icons/manufacturers/pneumatex_icon.svg').icon
+									img(src!='/img/icons/manufacturers/pneumatex_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='ta').js-menu-click
+									img(src!='/img/icons/manufacturers/ta_icon.svg').icon
+									img(src!='/img/icons/manufacturers/ta_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='heimeier').js-menu-click
+									img(src!='/img/icons/manufacturers/heimeier_icon.svg').icon
+									img(src!='/img/icons/manufacturers/heimeier_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='aircom').js-menu-click
+									img(src!='/img/icons/manufacturers/aircom_icon.svg').icon
+									img(src!='/img/icons/manufacturers/aircom_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='aquasermo').js-menu-click
+									img(src!='/img/icons/manufacturers/aquasermo_icon.svg').icon
+									img(src!='/img/icons/manufacturers/aquasermo_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='linak').js-menu-click
+									img(src!='/img/icons/manufacturers/linak_icon.svg').icon
+									img(src!='/img/icons/manufacturers/linak_title.svg').logo
+
+				.right-content
+					mixin product23Level(title, img)
+						.col-12
+							a(href='#').product-23-lev
+								.product-23-lev_trumb
+									img(src!= img)
+								.product-23-lev_content
+									h6.product-23-lev_title= title
+									.product-23-lev_descr.text-small
+										p Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста 
+					
+					mixin aboutManufacturer(page, title, brand)
+						.js-menu-pages(data-page= page data-title= title)
+							.row
+								.col-12
+									.brand-about
+										.brand-about_logo
+											img(src!= brand[0]).icon
+											img(src!= brand[1]).logo
+										.brand-about_descr
+											p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных клапанов и системных решений для жидких и газообразных сред.
+										.brand-about_title
+											h3 Продукция бренда
+
+							.row.products-2-lev
+								+product23Level('Приводы пневматические', '/img/trumb-cat/airline_red.png')
+
+					+aboutManufacturer('norgren', 'NORGREN', brandNorgren)
+					+aboutManufacturer('buschjost', 'BUSCHJOST', brandBuschjost)
+					+aboutManufacturer('herion', 'HERION', brandHerion)
+					+aboutManufacturer('maxseal', 'MAXSEAL', brandMaxseal)
+					+aboutManufacturer('tompson', 'TOMPSON', brandTompson)
+					+aboutManufacturer('imf', 'IMF', brandImf)
+					+aboutManufacturer('fas', 'FAS', brandFas)
+					+aboutManufacturer('kip', 'KIP', brandKip)
+					+aboutManufacturer('kloehn', 'LKOEHN', brandKloehn)
+					+aboutManufacturer('pneumatex', 'PNEUMAETX', brandPneumatex)
+					+aboutManufacturer('ta', 'TA', brandTa)
+					+aboutManufacturer('heimeier', 'HEIMEIER', brandHeimeier)
+					+aboutManufacturer('aircom', 'AIRCOM', brandAircom)
+					+aboutManufacturer('aquasermo', 'AQUASERMO', brandAquasermo)
+					+aboutManufacturer('linak', 'LINAK', brandLinak)

@@ -1,0 +1,72 @@
+extends ./includes/tmpl.pug
+
+block main
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Корзина
+
+	section.container
+		.row
+			.col-12.cart_title
+				h1 Корзина
+
+	section.container.page_middle
+		.row
+			.col-12.cart
+				.cart-list
+					.cart-list_header
+						.cart-list_col-article Артикул
+						.cart-list_col-name Наименование 
+						.cart-list_col-count Количество
+						.cart-list_col-price Цена (с НДС)
+						.cart-list_col-cancel
+					mixin cartListProduct()
+						.cart-list_product
+							.cart-list_col-article P1677B1-4.00X8.000-PS
+							.cart-list_col-name Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT
+							.cart-list_col-count
+								input(type='number' value=1)
+							.cart-list_col-price 2000
+							.cart-list_col-cancel
+								a(href!='#')
+									img(src!='/img/icons/cancel.svg')
+					+cartListProduct()
+					+cartListProduct()
+				
+				.cart-form
+					form.form
+						.pos-rel
+							input(name="name" placeholder="" required).form__inputs.name
+							label.form__label Ваше имя
+							.error Напишите свое имя
+						.pos-rel
+							input(name="email" placeholder="" required).form__inputs.e-mail
+							label.form__label Ваш email
+							.error Напишите ваш email
+						.pos-rel
+							input(name="phone" placeholder="" required).form__inputs.phone
+							label.form__label Ваш телефон
+							.error Напишите ваш телефон
+						.pos-rel
+							input(name="company" placeholder="" required).form__inputs.company
+							label.form__label Название компании
+							.error Напишите название компании
+						.pos-rel
+							textarea(name="message" placeholder="" required).textarea.form__inputs.name
+							label.form__label Комментарии к заказу
+							//- .error Напишите сообщение
+						.form__agree
+							input(type="checkbox").agree.form__checkbox
+							label(for="argee") соглашаюсь с условиями 
+								a(href="/docs" target="_blank").l-underline Политики конфиденциальности 
+							.error Подтвердите свое согласие
+						.form__btn
+							//- input(type="hidden" name="book" value="89199270")
+							button.submit
+								b Оформить Заказ
+					.form_success
+
+

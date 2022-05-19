@@ -1,0 +1,113 @@
+extends ./includes/tmpl.pug
+
+block main
+
+	section.container
+		.row
+			.col-12
+				.woocommerce-notices-wrapper
+					|	<?php wc_print_notices(); ?>
+		.row
+			.col-12.cart
+
+				form(action!="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post").cart-list
+					| 
+					| <?php global $woocommerce;
+					| $items = $woocommerce->cart->get_cart();
+					| if($items) : ?>
+					.cart-list_header
+						.cart-list_col-article Артикул
+						.cart-list_col-name Наименование 
+						.cart-list_col-count Количество
+						.cart-list_col-price Цена
+						.cart-list_col-cancel
+
+					|
+					| <?php foreach($items as $cart_item_key => $cart_item) :
+					| $product_id = $cart_item['data']->get_id();
+					| $_product =  wc_get_product($product_id); ?>
+					|
+					//- | <?php print_r($cart_item); ?>
+					.cart-list_product
+						.cart-list_col-article <?php echo get_post_meta( $product_id, '_sku', true) ?>
+						.cart-list_col-name
+							| <?php echo $_product->get_title() ?>
+						.cart-list_col-count
+							input(type='number' id!="<?php echo uniqid( 'quantity_' ) ?>" value!="<?php echo $cart_item['quantity'] ?>" name!='cart[<?php echo $cart_item["key"] ?>][qty]')
+						.cart-list_col-price
+							| <?php $price = str_replace(",", " ", number_format(get_post_meta($product_id , '_price', true)));
+							|	if($price) {
+							//- |		$price .= ' р. с НДС';
+							| 	$price .= " " . get_field('currency', $product_id);
+							|	} else {
+							|		$price = 'по запросу';
+							|	};
+							//- | if(!$price) $price = 'по запросу';
+							| echo $price; ?>
+						.cart-list_col-cancel
+							a(href!="<?php echo wc_get_cart_remove_url( $cart_item_key ) ?>")
+								img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/cancel.svg')
+
+					|
+					| <?php endforeach; ?>
+
+
+					.cart-update
+						button(type="submit" name="update_cart" value!="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>").btn Обновить корзину
+					
+					| <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+
+					| <?php else : ?>
+					//- p Корзина пуста
+					| <?php
+					| echo '<script type="text/javascript">window.location = "/products"</script>'
+					|  ?>
+					| <?php endif; ?>
+				.cart-form
+
+					form(name="checkout" method="post" class="checkout woocommerce-checkout" action!="/checkout" enctype="multipart/form-data").form
+						.pos-rel
+							input(name="billing_name" placeholder="" required).form__inputs.name
+							label.form__label Ваше имя
+							.error Напишите свое имя
+						.pos-rel
+							input(name="billing_email" placeholder="" required).form__inputs.e-mail
+							label.form__label Ваш email
+							.error Напишите ваш email
+						.pos-rel
+							input(name="billing_phone" placeholder="" required).form__inputs.phone
+							label.form__label Ваш телефон
+							.error Напишите ваш телефон
+						.pos-rel
+							input(name="billing_company" placeholder="" required).form__inputs.company
+							label.form__label Название компании
+							.error Напишите название компании
+						.pos-rel
+							textarea(name="billing_message" placeholder="" required).textarea.form__inputs.name
+							label.form__label Комментарии к заказу
+							//- .error Напишите сообщение
+						.form__agree
+							input(type="checkbox").agree.form__checkbox
+							label(for="argee") соглашаюсь с условиями 
+								a(href="/docs" target="_blank").l-underline Политики конфиденциальности 
+							.error Подтвердите свое согласие
+						.form__btn
+							input(type="hidden" name="payment_method" value="cheque" checked)
+							button(type="submit" name="woocommerce_checkout_place_order" data-user!="<?php echo get_current_user_id(); ?>").js-order-submit
+								b Оформить Заказ
+							| <?php wp_nonce_field( 'woocommerce-process_checkout', 'woocommerce-process-checkout-nonce' ); ?>
+
+					.form_send-success
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Cпасибо за Ваш заказ!
+						.title.second-line
+						.descr Мы свяжемся с Вами в ближайшее время.
+						button.btn.js-finish-order Хорошо
+					
+					.form_send-error
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Ваш заказ не оформлен!
+						.descr Что-то пошло не так, повторите попытку.
+						button.btn.js-return-form Повторить
+
+

@@ -1,0 +1,9 @@
+.col-xl-6
+	a(href!='<?php the_permalink() ?>').about-news_card
+		.about-news_trumb
+			img(src!='<?php echo get_the_post_thumbnail_url() ?>;')
+		.about-news_descr
+			.about-news_title <?php the_title(); ?>
+			.about-news_exept
+				<?php the_excerpt() ?>
+			.about-news_date <?php the_time('j/m/Y'); ?>

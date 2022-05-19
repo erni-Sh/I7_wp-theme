@@ -1,0 +1,54 @@
+.row
+	.col-12.products-list
+		.row
+			.col-lg-9.products-list_search-prnt
+
+				.products-list_search
+					//- | <?php if ( function_exists( 'aws_get_search_form' ) ) { aws_get_search_form(); } ?> 
+					//- input(placeholder='Поиск по продукции')
+					//- img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/search-gray.svg').search-icon
+					form.search_form(method="get" action!="<?php echo esc_url( home_url( '/' ) ); ?>")
+						input(type="text" name="s" placeholder="Поиск" value!="<?php if(!empty($_GET['s'])){echo $_GET['s'];}?>"  autocomplete='off')
+						.lds-dual-ring.is-hidden
+						button(type='submit').search-icon
+							img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/search-gray.svg')
+						.search_wrapper(style="display: none")
+							ul
+							button(type='submit') Показать больше результатов
+
+
+
+			.col-lg-3.products-list_total
+				|
+				| <?php
+				//- | $args = array( 'post_type' => 'product', 'product_cat' => $product_cat->slug, 'post_status' => 'publish', 'posts_per_page' => -1 );
+				//- | $products = new WP_Query( $args );
+				| $countcat = $product_cat->count;
+				//- post on page - 10
+				| $max_pages = ceil($countcat / 10); 
+				| ?>
+				|
+				p Всего товаров: 
+					span <?php echo $countcat; ?>
+
+		//- |
+		//- | <?php get_new_cards(strval($product_cat->slug)); ?>
+		//- |
+		
+.row
+	.col-12.text-center
+		|
+		| <?php if($countcat) : ?>
+		|
+		button.btn_white.js-loader.loader_new_cards.is-hidden(data-page=1 data-category!="<?php echo $product_cat->slug; ?>" data-container='.products-list' data-maxpage!="<?php echo $max_pages ?>")
+			span Показать еще
+
+		//- load animation
+		.lds-facebook
+			div
+			div
+			div
+
+		|
+		| <?php endif ?>
+		|

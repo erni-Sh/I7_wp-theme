@@ -1,0 +1,40 @@
+.col-12
+	.solution-inside-card.gray-card
+		.solution-inside-card_trumb
+			| <?php 
+			| $thumbnail_id = get_woocommerce_term_meta( $card_data->term_id, 'thumbnail_id', true );
+			| if($thumbnail_id) :
+			| ?>
+
+			img(src!='<?php echo wp_get_attachment_url( $thumbnail_id ); ?>')
+			| <?php endif; ?>
+
+			//- img(src!='<?php echo get_template_directory_uri(); ?>/img/trumb-cat/Actuators.png')
+		.solution-inside-card_content
+			a(href!='<?php echo "/products#" . $card_data->slug ?>')
+				h6.solution-inside-card_title <?php echo $card_data->name; ?>
+			.solution-inside-card_descr.text-small <?php echo $card_data->description; ?>
+			.solution-inside-card_list
+				//- | <?php 
+				//- | $cats = get_terms( array(
+				//- |   'taxonomy' => 'product_cat',
+				//- |   'parent' => $card_data->term_id,
+				//- |   'orderby' => 'term_order',
+				//- |   'hide_empty' => 0
+				//- | ));
+				//- //- | print_r($cats);
+				//- | if($cats) : ?>
+
+				//- ul
+				//- 	| <?php 
+				//- 	| foreach ($cats as $cat) :
+				//- 	| echo $cat->name;
+				//- 	| showSolutionInsideCardList($solution_cat, $cat);
+				//- 	| endforeach; ?>
+
+				//- |
+				//- | <?php endif; ?>
+				//- |
+
+				ul
+					| <?php showSolutionInsideCardList($solution_cat, $card_data->term_id); ?>

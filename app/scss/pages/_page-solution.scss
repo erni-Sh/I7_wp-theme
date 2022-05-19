@@ -1,0 +1,174 @@
+.solutions {
+	margin-top: 20px;
+}
+
+.solution-inside-card {
+	display: flex;
+	position: relative;
+	padding: 23px 19px;
+	margin-bottom: 20px;
+	width: 100%;
+	min-height: 289px;
+	
+	&_trumb {
+		display: flex;
+    // height: 133px;
+    margin: 0 0 auto;
+    padding-right: 27px;
+    min-width: 218px;
+    max-width: 218px;
+
+    img {
+    	max-width: 100%;
+    	max-height: 100%;
+    	width: 100%;
+    	object-fit: contain;
+    	margin: auto;
+    }
+	}
+
+	&_content {
+		margin: 0;
+		padding-right: 22px;
+	}
+
+	&_title {
+		margin-bottom: 1.2rem;
+		font-size: 16px;
+	}
+
+	&_descr {
+		margin-bottom: 1.9rem;
+		// height: 155px;
+  	overflow: hidden;
+	}
+
+	&_list {
+		li {
+			position: relative;
+			color: $red;
+			font-size: 16px;
+			margin-bottom: 9px;
+			padding-left: 23px;
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			&:before {
+				content: url('../img/icons/right-arrow-red.svg');
+				position: absolute;
+				left: -1px;
+				top: 50%;
+				transform: translateY(-50%) scale(.5);
+			}
+		}
+	}
+
+	@media (max-width: $lg){
+		flex-direction: column;
+		padding: 0px 11px;
+		height: 465px;
+		
+		&_trumb {
+			padding-right: 0;
+			min-height: 90px;
+			margin: 38px auto;
+		}
+
+		&_title {
+			margin-bottom: 0.5rem;
+		}
+
+		&_descr {
+			margin-bottom: 1.3rem;
+		}
+
+		&_list {
+			li {
+				font-size: 12px;
+				margin-bottom: 26px;
+				padding-left: 10px;
+
+				&:before {
+					left: -6px;
+					transform: translateY(-50%) scale(0.35);
+				}
+			}
+		}
+	}
+}
+
+.consolidation {
+	&_text {
+		font-size: 20px;
+		line-height: 30px;
+		margin-bottom: 25px;
+
+		.title {
+			line-height: 43px;
+		}
+	}
+
+	@media (max-width: $lg){
+		&_text {
+			font-size: 16px;
+			margin-bottom: 8px;
+
+			.title {
+				line-height: 9px;
+				font-size: 20;
+				margin-bottom: 20px;
+			}
+		}
+	}
+}
+
+.brand {
+	&-about {
+		&_logo {
+			display: inline-flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 68px;
+			margin-bottom: 14px;
+
+			& > .icon {
+				height: 100%;
+				padding-right: 22px;
+			}
+			& > .logo {
+				height: 45%;
+			}
+		}
+
+		&_descr {
+			font-size: 20px;
+			line-height: 33px;
+		}
+
+		&_title {
+			margin: 43px 0 35px;
+		}
+
+		@media (max-width: $lg){
+			&_logo {
+				height: 43px;
+				margin-top: 13px;
+				margin-bottom: 16px;
+			}
+
+			&_descr {
+				font-size: 15px;
+				line-height: 25px;
+			}
+
+			&_title {
+				margin: 29px 0 35px;
+				h3 {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+}

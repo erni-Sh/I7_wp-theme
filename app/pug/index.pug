@@ -1,0 +1,178 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				a(href='/')
+	//- 					img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/home.svg').breadcrumbs_home
+	//- 				img(src!="<?php echo get_template_directory_uri(); ?>/img/icons/right-arrow-gray30.svg").breadcrumbs_separator
+	//- 				p Главная
+
+	section.container.main-page_top
+		.row
+			.col-xxl-9.col-lg-8.main-slider_parrent
+				.main-slider.swiper-container
+					.swiper-wrapper
+
+						|
+						| <?php
+						| 	$arg = array(
+						|     'category'=> 29,
+						|     'orderby' => 'date',
+						|			'order' => 'ASC',
+						|     'numberposts' => 10,
+						|   );
+						| 
+						| $posts = get_posts($arg);
+						| if ($posts) :
+						| foreach ($posts as $post) :
+						| setup_postdata($post);
+						| ?>
+						|
+						|
+						| <?php 
+						| $link = get_field("slider-link");
+						| $target = "_blank";
+						| if(strpos($link, get_site_url()) !== false) $target = "_self"
+						| ?>
+						|
+						//- style!="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 58%), url('<?php echo get_the_post_thumbnail_url() ?>')"
+						a(href!='<?php echo $link; ?>' target!="<?php echo $target; ?>").swiper-slide.single-slider(style!="background-image: url('<?php echo get_the_post_thumbnail_url() ?>')")
+
+							.single-slider_content
+								.category(data-swiper-parallax="-600")
+									| <?php echo get_field("category"); ?>
+								.title(data-swiper-parallax="-1800")
+									h1.title <?php the_title() ?>
+								.descr.text-big(data-swiper-parallax="-2700")
+									| <?php the_content() ?>
+						
+						| <?php endforeach;
+						| endif;
+						| ?>
+						|
+
+					.swiper-pagination
+
+			.col-xxl-3.col-lg-4
+				.side-news
+					.title Новости
+					
+					|
+					| <?php
+					| 	$arg = array(
+					|     'category'=> 1,
+					|     'orderby' => 'date',
+					//- | 		'order'   => 'ASC',
+					|     'numberposts' => 3,
+					|   );
+					| 
+					| $posts = get_posts($arg);
+					| if ($posts) :
+					| foreach ($posts as $post) :
+					| setup_postdata($post);
+					| ?>
+					|
+					a(href!='<?php the_permalink() ?>').single-news
+						.trumb
+							img(src!='<?php echo get_the_post_thumbnail_url() ?>')
+						.descr
+							//- .tag
+							//- 	//- подключить теги
+							//- 	| Консолидация
+							.title 
+								| <?php the_title(); ?>
+							.date
+								| <?php the_time('j F Y'); ?>
+								
+					| <?php endforeach;
+					| endif;
+					| ?>
+					|
+
+					.more
+						a(href='/about-us#about_news') Больше новостей
+
+	section.container.mob-menu-on-main
+		.row
+			.col-12
+				ul
+					li
+						a(href='/product')
+							| Продукция
+					li
+						a(href='/solutions')
+							| Решения
+					li
+						a(href='/brands')
+							| Бренды
+					li
+						a(href='/consolidation')
+							| Консолидация
+					li
+						a(href='/support')
+							| Поддержка
+					li
+						a(href='/about-us')
+							| О нас
+
+	section.container
+		.row
+			.col-12.main-page_middle
+				.sidebar
+					.menu-manufacturers_wrapper
+						.menu-manufacturers.swiper-container
+							ul.swiper-wrapper
+								li(hidden)
+								| <?php
+								| $product_cat = get_terms('product_cat', 'parent=22&orderby=ID&hide_empty=0');
+								|	if($product_cat) :
+								| foreach ($product_cat as $cat) :
+								| ?>
+
+								li.swiper-slide.manufacturer(data-open='false')
+									a(href!='<?php echo "/brands#" . $cat->slug; ?>').js-menu-click
+										img(src!='<?php echo get_field("icon", "product_cat_" . $cat->term_id); ?>').icon
+										img(src!='<?php echo get_field("logo", "product_cat_" . $cat->term_id); ?>').logo
+
+								| <?php
+								|	endforeach;
+								|	endif;
+								| ?>
+
+				.right-content
+					//- .show-scroll
+					.row.products-1-lev
+						| <?php get_new_WC_cards(55, 'product_1lev_card'); ?>
+
+	section.container.main-page_bot
+		.row
+			.col-12
+				h3 Решения
+		.row.solutions
+			.swiper-container.solutions-slider
+				.swiper-wrapper
+					|
+					| <?php
+					| $product_cat = get_terms('product_cat', 'parent=25&orderby=ID&hide_empty=0');
+					|	if($product_cat) :
+					| foreach ($product_cat as $cat) :
+					| ?>
+
+					.swiper-slide.col-xl-3.col-md-4.col-10
+						a(href!='<?php echo "/solutions#" . $cat->slug; ?>').solution-card
+							.solution-card_inner
+								.solution-card_trumb
+									| <?php 
+									| $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+									| ?>
+									img(src!='<?php echo wp_get_attachment_url( $thumbnail_id ); ?>')
+								.solution-card_title
+									h5 <?php echo $cat->name; ?>
+
+					| <?php
+					|	endforeach;
+					|	endif;
+					| ?>

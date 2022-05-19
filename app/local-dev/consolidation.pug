@@ -1,0 +1,155 @@
+extends ./includes/tmpl.pug
+
+block main
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Консолидация
+	
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style='background-image:url("/img/backgrounds/top-background_2.jpg")')
+					h1 Консолидация
+					.text-big
+						
+	section.container.page_bottom.js-card-menu-container
+		.row
+			.col-12.consolidation_text
+				.title
+					p
+						b Консолидация
+				p Мы крупнейший в мире поставщик компонентов и адаптированных решений в области управляющих компонентов для ключевых секторов промышленности.  Везде, где точность, скорость и надежность имеют первостепенное значение, мы предлагаем исключительные решения, повышающие производительность и эффективность производственных систем.
+		
+		.row.page-brand.solutions
+			mixin solutionCard(img, title, link)
+				.col-xl-3.col-md-4
+					a(href!= link).solution-card.js-card-menu-click(style='background-color: #BE1D25')
+						.solution-card_inner
+							.solution-card_trumb
+								img(src!= img)
+							.solution-card_title
+								h5= title
+
+			+solutionCard(
+				'/img/consolidation/automation.jpg',
+				'Автоматизация',
+				'RONCHI2')
+			+solutionCard(
+				'/img/consolidation/Pumps.jpg',
+				'Насосы и запорная арматура',
+				'RONCHI')
+			+solutionCard(
+				'/img/consolidation/electrotechnica.jpg',
+				'Электротехническая продукция', 'RONCHI2')
+			+solutionCard(
+				'/img/consolidation/construction.jpg',
+				'Строительные материалы',
+				'RONCHI')
+			+solutionCard(
+				'/img/consolidation/testing.jpg',
+				'Контрольно измерительное оборудование',
+				'RONCHI2')
+			+solutionCard(
+				'/img/consolidation/special.jpg',
+				'Специализированное оборудование',
+				'RONCHI')
+			+solutionCard(
+				'/img/consolidation/oils.jpg',
+				'Масла и смазки',
+				'RONCHI')
+			+solutionCard(
+				'/img/consolidation/consumables.jpg',
+				'Расходные материалы',
+				'RONCHI2')
+
+		.row
+			.col-12.consolidation_text
+				p Обратитесь к нам, если вы торгующая компания, производитель или монтажная организация, и требуется комплексное предложение по поставке оборудования с лучшими условиями.
+
+
+	section.container.js-card-menu-inside-container
+		.row
+			.col-12.page_middle
+				.sidebar
+					.side-menu.is-hidden
+						.title Консолидация
+						.menu-wrapper
+							ul
+								li.menu-item
+									a(href='RONCHI').title.js-menu-click RONCHI
+								li.menu-item
+									a(href='SIMEX').title.js-menu-click SIMEX
+								li.menu-item
+									a(href='SIEMENS').title.js-menu-click SIEMENS
+					
+					.side-menu.is-hidden
+						.title Консолидация2
+						.menu-wrapper
+							ul
+								li.menu-item
+									a(href='RONCHI2').title.js-menu-click RONCHI
+								li.menu-item
+									a(href='SIMEX2').title.js-menu-click SIMEX
+								li.menu-item
+									a(href='SIEMENS2').title.js-menu-click SIEMENS																																	
+				.right-content
+					//- ***** ПЕРВОЕ МЕНЮ ******* 
+					.js-menu-pages(data-page='RONCHI' data-title='RONCHI')
+						.article_title RONCHI
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос
+					.js-menu-pages(data-page='SIMEX' data-title='SIMEX')
+						.article_title SIMEX
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос
+					.js-menu-pages(data-page='SIEMENS' data-title='SIEMENS')
+						.article_title SIEMENS
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос
+
+					//- ***** ВТОРОЕ МЕНЮ ******* 
+					.js-menu-pages(data-page='RONCHI2' data-title='RONCHI')
+						.article_title RONCHI2
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос
+					.js-menu-pages(data-page='SIMEX2' data-title='SIMEX')
+						.article_title SIMEX2
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос
+					.js-menu-pages(data-page='SIEMENS2' data-title='SIEMENS')
+						.article_title SIEMENS2
+						.article_trumb 
+							img(src!='/img/article/Ronchi.jpg')
+						.article
+							hr
+							p
+							p Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных. Наша торговая марка охватывает лидирующий на рынке ассортимент технологических и мультимедийных.
+							button Направить запрос

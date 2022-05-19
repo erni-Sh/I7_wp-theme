@@ -1,0 +1,144 @@
+hr {
+	border-top: 2px solid $red !important;
+	border-bottom: none !important;
+	margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+
+.js-card-menu-container,
+.js-card-menu-inside-container {
+	display: none;
+}
+
+// отстройка слайдера
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination {
+	text-align: left;
+	left: 31px !important;
+	bottom: 20px !important;
+	@media (max-width: $lg){
+		bottom: 9px !important;
+	}
+	@media (max-width: $md){
+		left: 17px !important;
+	}
+
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+	background: $ll-gray;
+	opacity: 1;
+	@media (max-width: $md){
+		width: 8px;
+		height: 8px;
+	}
+}
+
+.swiper-pagination-bullet-active {
+	background: $red;
+}
+
+// Плагин поиска
+
+.aws-container {
+	.aws-search-form {
+		height: 33px !important;
+	}
+
+	.aws-search-field {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		outline: none;
+		border: 0;
+		background-color: $ll-gray !important;
+		padding: 0 25px 0 15px !important;
+		font-size: 15px;
+		z-index: auto;
+
+		&::placeholder {
+			color: $l-gray;
+		}
+	}
+
+	.aws-form-btn {
+		border: 0 !important;
+	}
+
+	.aws-search-btn_icon {
+		color: #929292 !important;
+	}
+
+	.aws-search-clear {
+		width: 24px !important;
+	}
+
+	.aws-loader {
+		right: -3px !important;
+	}
+}
+
+
+
+
+
+.aws-search-result {
+	.aws_result_image {
+		display: none;
+		// width: 60px;
+		// height: 41px;
+
+		// img {
+		// 		max-height: 100%;
+		//     object-fit: contain;
+		// }
+	}
+	.aws_result_title {
+		color: inherit;
+	}
+
+	.aws_search_more {
+		// background-color: $red;
+		a {
+			color: $red;
+			font-size: 88%; //124%
+			// font-family: $gotham-b;
+
+	    background: $l-gray;
+	    line-height: 17px;			
+
+			&:hover {
+				background-color: $red !important;
+				color: white;
+			}
+		}
+	}
+}
+
+.aws-overlay-mask{
+	top: 78px;
+}
+.aws-container.aws-mobile-fixed {
+	top: 24px !important;
+}
+.aws-mobile-fixed-close {
+	padding: 7px 15px 30px;
+	background-color: white;
+}
+    
+
+.aws-container.aws-mobile-fixed .aws-search-form {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+}
+
+

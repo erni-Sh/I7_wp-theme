@@ -1,0 +1,160 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image: linear-gradient(90deg, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.65) 100%), url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/Onas.jpg')")
+					h1 И7
+					.text-big <?php echo category_description(28); ?>
+						//- | В&nbsp;наш портфель продукции мирового класса входят Norgren, Buschjost, FAS, Herion и&nbsp;Maxseal.
+						//- | Доказав свою ценность на&nbsp;протяжении многих лет, они стали одними из&nbsp;самых надежных
+						//- | имен в&nbsp;области управления жидкостями и&nbsp;движением..
+
+	section.container
+		.row
+			.col-12.page_middle
+				.sidebar
+					.side-menu
+						.menu-wrapper
+							ul
+								li.menu-item
+									a(href='#about_us').title О нас
+								li.menu-item
+									a(href='#about_news').title Новости
+								li.menu-item
+									a(href='#responsible_business').title Ответственный бизнес
+								li.menu-item
+									a(href='#history').title История
+								li.menu-item
+									a(href='#agency').title Представительства
+								li.menu-item
+									a(href='#contacts').title Контакты																																													
+				
+				.right-content
+					.js-menu-pages(data-page='about_us' data-title='И7')
+						.article
+							| <?php $post = get_post(73);
+							| echo $post->post_content; ?>						
+
+					.js-menu-pages(data-page='about_news' data-title='Новости')
+						.about-news
+							<?php get_new_cards(1); ?>
+						
+						.row
+							.col-12.text-center
+								|
+								| <?php $max_pages = get_max_pages_on_category('1', '4'); ?>
+								| <?php if($max_pages > 1) : ?>
+								
+								button.btn_white.loader_new_cards(data-page=2 data-category="1" data-container='.about-news' data-maxpage!="<?php echo $max_pages ?>") 
+									span Показать еще
+								
+								| <?php endif ?>
+								|
+
+					.js-menu-pages(data-page='responsible_business' data-title='Отвественный бизнес')
+						.article
+							| <?php $post = get_post(75);
+							| echo $post->post_content; ?>																																				
+
+					.js-menu-pages(data-page='history' data-title='История')
+						.article
+							| <?php $post = get_post(77);
+							| echo $post->post_content; ?>																				
+
+					.js-menu-pages(data-page='agency' data-title='Представительства')
+						.agency
+							| <?php $post = get_post(79);
+							| echo $post->post_content; ?>		
+
+
+
+					.js-menu-pages(data-page='contacts' data-title='Контакты')
+						.row.contacts
+							.col-lg-4
+								.contacts_small-cards.gray-card
+									h6.title Позвоните нам
+									p
+										b Телефон: 
+										| <?php echo get_field('phone', 5857); ?>
+
+									p Мы ответим на все интересующие Вас вопросы.
+									//- p
+									//- 	b Время работы: 
+									//- 	| <?php echo get_field('schedule_days', 5857) ?>										
+									//- 	//- |  пн&nbsp;&#8209;&nbsp;пт
+									//- p
+									//- 	b Часы работы: 
+									//- 	| <?php echo get_field('schedule_time', 5857) ?>
+									//- 	//- |  09:00&nbsp;&#8209;&nbsp;18:00
+									a(href!="tel:<?php echo get_field('phone', 5857); ?>").icon
+										img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/call_us.svg')
+
+							.col-lg-4
+								.contacts_small-cards.gray-card
+									h6.title Напишите нам
+									p
+										b Почта: 
+										a(href!="mailto:<?php echo get_field('e-mail', 5857) ?>") <?php echo get_field('e-mail', 5857); ?>										
+
+									p Мы постраемся оперативно ответить на Ваше сообщение.
+									a(href!="mailto:<?php echo get_field('e-mail', 5857) ?>").icon
+										img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/write_us.svg')
+
+							.col-lg-4
+								.contacts_small-cards.gray-card
+									h6.title Онлайн чат
+									p Нажмите на кнопку, чтобы начать общение или отправьте сообщение TELEGRAM / WHATSApp +7&nbsp;(903)&nbsp;960&#8209;37&#8209;64
+
+									a(href!='/about-us#contacts' onclick="tidioChatApi.open()").icon
+										img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/chat.svg')
+
+							.col-12
+								.contacts_big-cards.contacts_yandex.gray-card
+
+									a(href='https://yandex.ru/maps/org/i7/1315719161/?utm_medium=mapframe&utm_source=maps' style='color:#eee;font-size:12px;position:absolute;top:0px;') И7
+									a(href='https://yandex.ru/maps/213/moscow/category/hydraulic_and_pneumatic_equipment/184106510/?utm_medium=mapframe&utm_source=maps' style='color:#eee;font-size:12px;position:absolute;top:14px;') Гидравлическое и пневматическое оборудование в Москве
+									a(href='https://yandex.ru/maps/213/moscow/category/industrial_equipment/184106862/?utm_medium=mapframe&utm_source=maps' style='color:#eee;font-size:12px;position:absolute;top:28px;') Промышленное оборудование в Москве
+									iframe(src='https://yandex.ru/map-widget/v1/-/CCUuF8uBcC' width='560' height='400' frameborder='1' allowfullscreen='true' style='position:relative;')
+
+
+
+							.col-12
+								.contacts_big-cards.gray-card
+									div
+										h4.title Офис
+										p
+											b Адрес: 
+											| <?php echo get_field('office_address_1', 5857);
+											| $address = get_field('office_address_2', 5857);
+											| if($address) echo '<br>' . $address;
+											| $address = get_field('office_address_3', 5857);
+											| if($address) echo '<br>' . $address; ?>									
+										//- p
+										//- 	b Часы работы: 
+										//- 	| <?php echo get_field('office_schedule_days', 5857) ?>
+										p
+											b Время работы: 
+											| <?php echo get_field('office_schedule_time', 5857) ?>
+
+									div
+										h4.title Склад
+										p
+											b Адрес: 
+											| <?php echo get_field('warehouse_address', 5857) ?>										
+										//- p
+										//- 	b Часы работы: 
+										//- 	| <?php echo get_field('warehouse_schedule_days', 5857) ?>
+										p
+											b Время работы: 
+											| <?php echo get_field('warehouse_schedule_time', 5857) ?>
+										//- a(href!="https://yandex.ru/maps/org/i7/1315719161/?ll=37.681893%2C55.715854&z=16" target="_blank").link Посмотреть на карте
+
+										//- a(href!="https://yandex.ru/maps/org/i7/1315719161/?ll=37.681893%2C55.715854&z=16" target="_blank").link Посмотреть на карте

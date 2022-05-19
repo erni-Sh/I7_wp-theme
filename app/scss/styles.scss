@@ -1,0 +1,47 @@
+// Стили плигинов ----------
+@import 'libs/_swiper-bundle';
+
+@import 'installations/_normalize';
+
+// Частичное подключение bootatsap 4 ---------------------------------
+
+// Перезапись переменных variables
+@import "bootstrap/_variables";
+
+// Подключили систему гридов bootatsap 4 (на flex-box)
+
+@import "../../node_modules/bootstrap/scss/_functions";
+@import "../../node_modules/bootstrap/scss/_variables";
+@import "../../node_modules/bootstrap/scss/_mixins";
+@import "../../node_modules/bootstrap/scss/_grid";
+@import "../../node_modules/bootstrap/scss/_utilities";
+// Перезапись/дополнение utilities
+@import "bootstrap/_utilities";
+
+// Стили сайта ----------
+
+// Общие 
+@import 'installations/_vars';
+@import 'installations/_fonts';
+@import 'installations/_type';
+
+@import 'installations/_common';
+
+@import '_components';
+@import '_elements';
+@import '_header';
+@import '_footer';
+
+// Страницы
+@import 'pages/_page-skeleton.scss';
+@import 'pages/_page-main.scss';
+@import 'pages/_page-about_us.scss';
+@import 'pages/_page-news-inside.scss';
+@import 'pages/_page-solution.scss';
+@import 'pages/_page-support.scss';
+@import 'pages/_page-cart.scss';
+@import 'pages/_page-search.scss';
+
+// important стили
+@import 'installations/_important.scss';
+

@@ -1,0 +1,485 @@
+header.s-header
+	.hamburger_toogle
+			span
+			span
+			span
+	.hamburger
+		.hamburger_wrap
+			.hamburger_menu
+				ul
+					li
+						a(href='/products')
+							| Продукция
+					li
+						a(href='/solutions')
+							| Решения
+					li
+						a(href='/brands')
+							| Бренды
+					li
+						a(href='/consolidation')
+							| Консолидация
+					li
+						a(href='/support')
+							| Поддержка
+					li
+						a(href='/about-us')
+							| О нас
+			.hamburger_contacts
+				.hamburger_mail
+					a(href="mailto:info@iseven.ru") info@iseven.ru
+				.hamburger_phone
+					a(href="tel:+74957781732") +7 (495) 778 17 32
+	
+	.s-header_r1
+		.container
+			.row
+				.col
+					.s-header_logo
+						a(href="/")
+							img(src!='<?php echo get_template_directory_uri(); ?>/img/favicon/I7_logo.svg')
+				.col-md-10.text-right
+					.s-header_r1c2
+						.s-header_mail
+							a(href="mailto:info@iseven.ru") info@iseven.ru
+						.s-header_phone
+							a(href="tel:+74957781732") +7 (495) 778 17 32
+						.s-header_search
+							mixin searchHeader
+								//- | <?php if ( function_exists( 'aws_get_search_form' ) ) { aws_get_search_form(); } ?> 
+								form.search_form(method="get" action!="<?php echo esc_url( home_url( '/' ) ); ?>")
+									input(type="text" name="s" placeholder="Поиск" value!="<?php if(!empty($_GET['s'])){echo $_GET['s'];}?>"  autocomplete='off')
+									.lds-dual-ring.is-hidden
+									button(type='submit').search-icon
+										img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/search-gray.svg')
+									.search_wrapper(style="display: none")
+										ul
+										button(type='submit') Показать больше результатов
+									//- a(href='/products')
+									//- 	b Рекомендуемые исполнения. 
+									//- 	| Возможны и другие варианты - см. каталог продукции																																											
+							+searchHeader
+	
+	.s-header_search.mobile
+		+searchHeader
+	
+	.s-header_r2
+		.container
+			.row.pos-rel
+				.col-lg-8
+					nav.nav.t-menu
+						ul.t-menu_list
+							//- | <?php if( is_page(21)) {
+							//- |	echo '1';
+							//- | } ?>
+							//- Сделать определение активной страницы
+							|
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+
+							| if(is_page(21)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- Продукция
+								| <?php
+								| $category = 55;
+								| $page_id = 21;
+								| $sub_cats = get_terms('product_cat',[
+								|		'parent' => $category,
+								|		'orderby' => 'ID',
+								|		'hide_empty' => 0
+								| ]);
+								|	?>
+								| 
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												| 
+												| <?php if( $sub_cats ): ?>
+												| <?php
+												| $mid_count = count($sub_cats) / 2;
+												//- не выполняется, в случае
+												| if($mid_count < 4) $mid_count = 8;
+												| $counter = 0;
+												| ?>
+												.drop-down_list
+													ul
+														| <?php
+														|	foreach( $sub_cats as $cat ) :
+														| if($counter < $mid_count) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| $counter++;
+														| endif;
+														| endforeach; ?>
+
+												.drop-down_list
+													ul
+														| <?php
+														| $sub_cats = array_splice($sub_cats, ceil($mid_count));
+														|	foreach( $sub_cats as $cat ) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| endforeach; ?>
+												| 
+												| <?php endif; ?>
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+
+							|
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+							| if(is_page(9)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- Решения
+								| <?php
+								| $category = 25;
+								| $page_id = 9;
+								| $sub_cats = get_terms('product_cat',[
+								|		'parent' => $category,
+								|		'orderby' => 'ID',
+								|		'hide_empty' => 0
+								| ]);
+								|	?>
+								| 
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												| 
+												| <?php if( $sub_cats ): ?>
+												| <?php
+												| $mid_count = count($sub_cats) / 2;
+												//- не выполняется, в случае
+												| if($mid_count < 4) $mid_count = 8;
+												| $counter = 0;
+												| ?>
+												.drop-down_list
+													ul
+														| <?php
+														|	foreach( $sub_cats as $cat ) :
+														| if($counter < $mid_count) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| $counter++;
+														| endif;
+														| endforeach; ?>
+
+												.drop-down_list
+													ul
+														| <?php
+														| $sub_cats = array_splice($sub_cats, ceil($mid_count));
+														|	foreach( $sub_cats as $cat ) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| endforeach; ?>
+												| 
+												| <?php endif; ?>
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+
+							|
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+							| if(is_page(13)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- Бренды
+								| <?php
+								| $category = 22;
+								| $page_id = 13;
+								| $sub_cats = get_terms('product_cat',[
+								|		'parent' => $category,
+								|		'orderby' => 'ID',
+								|		'hide_empty' => 0
+								| ]);
+								|	?>
+								| 
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												| 
+												| <?php if( $sub_cats ): ?>
+												| <?php
+												| $mid_count = count($sub_cats) / 2;
+												//- не выполняется, в случае
+												| if($mid_count < 4) $mid_count = 8;
+												| $counter = 0;
+												| ?>
+												.drop-down_list
+													ul
+														| <?php
+														|	foreach( $sub_cats as $cat ) :
+														| if($counter < $mid_count) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| $counter++;
+														| endif;
+														| endforeach; ?>
+
+												.drop-down_list
+													ul
+														| <?php
+														| $sub_cats = array_splice($sub_cats, ceil($mid_count));
+														|	foreach( $sub_cats as $cat ) :
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php
+														| endforeach; ?>
+												| 
+												| <?php endif; ?>
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+							
+							|
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+							| if(is_page(11)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- Консолидация
+								| <?php
+								| $category = 36;
+								| $page_id = 11;
+								| $sub_cats = get_categories( array(
+								| 	'child_of' => $category,
+								| 	'hide_empty' => 0
+								| ) );
+								|	?>
+								| 
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												| 
+												| <?php if( $sub_cats ): ?>
+												| <?php
+												| $mid_count = count($sub_cats) / 2;
+												//- не выполняется, в случае
+												| if($mid_count < 4) $mid_count = 8;
+												| $counter = 0;
+												| ?>
+												.drop-down_list
+													ul
+														| <?php
+														|	foreach( $sub_cats as $cat ) :
+														| if($counter < $mid_count) :
+														| ?>
+														|
+
+														|
+														| <?php $arg = array(
+														|   'category'=> $cat->term_id,
+														|   'orderby' => 'date',
+														|   'numberposts' => 1,
+														| );
+														| 
+														| $posts = get_posts($arg);
+														| if ($posts) :
+														| foreach ($posts as $post_cur) :
+														| ?>
+														|	
+
+														li
+
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug . "_" . $post_cur->post_name; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+														|
+														| <?php endforeach;
+														| endif;
+														| ?>
+														|
+
+														| <?php
+														| $counter++;
+														| endif;
+														| endforeach; ?>
+
+												.drop-down_list
+													ul
+														| <?php
+														| $sub_cats = array_splice($sub_cats, ceil($mid_count));
+														|	foreach( $sub_cats as $cat ) :
+														| ?>
+														|
+
+														li
+															|
+															| <?php $arg = array(
+															|   'category'=> $cat->term_id,
+															|   'orderby' => 'date',
+															|   'numberposts' => 1,
+															| );
+															| 
+															| $posts = get_posts($arg);
+															| if ($posts) :
+															| foreach ($posts as $post_cur) :
+															| ?>
+															|	
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug . "_" . $post_cur->post_name; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+															|
+															| <?php endforeach;
+															| endif; ?>
+															|
+
+														| <?php
+														| endforeach; ?>
+												| 
+												| <?php endif; ?>
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+
+							|
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+							| if(is_page(15)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- Поддержка
+								| <?php
+								| $category = 32;
+								| $page_id = 15;
+								| $sub_cats = get_categories( array(
+								| 	'child_of' => $category,
+								| 	'hide_empty' => 0
+								| ) );
+								|	?>
+								| 
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												.drop-down_list
+													ul
+														|
+														| <?php 
+														| if( $sub_cats ):
+														|	foreach( $sub_cats as $cat ) : 
+														| ?>
+														|
+
+														li 
+															a(href!='<?php echo get_permalink($page_id) . "#" . $cat->slug; ?>' class!='<?php echo $classScroll; ?>') <?php echo $cat->name; ?>
+
+														| <?php 
+														| endforeach;
+														| endif;
+														| ?>
+												//- .drop-down_list
+												//- 	ul
+												//- 		li 
+												//- 			a(href='#') Реле давления
+
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+							
+							| <?php 
+							| $classActivePage = '';
+							| $classScroll = '';
+							| if(is_page(17)) :
+							| $classActivePage = 'js-active-page';
+							| $classScroll = 'js-scrollUp';
+							| endif; ?>
+							|
+							li.t-menu_item.has-dropdown(class!='<?php echo $classActivePage; ?>')
+								//- О Нас
+								<?php $page_id = 17; ?>
+								a(href!='<?php echo get_permalink($page_id)  . "#"; ?>')
+									<?php echo get_the_title($page_id); ?>
+								.drop-down.container
+									.row
+										.col-12.d-flex.justify-content-between
+											.drop-down_menu
+												.drop-down_list
+													ul
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#about_us"; ?>' class!='<?php echo $classScroll; ?>') О нас
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#about_news"; ?>' class!='<?php echo $classScroll; ?>') Новости
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#responsible_business"; ?>' class!='<?php echo $classScroll; ?>') Ответственный бизнес
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#history"; ?>' class!='<?php echo $classScroll; ?>') История
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#agency"; ?>' class!='<?php echo $classScroll; ?>') Представительства
+														li 
+															a(href!='<?php echo get_permalink($page_id)  . "#contacts"; ?>' class!='<?php echo $classScroll; ?>') Контакты
+											.drop-down_descr
+												h4 <?php echo get_the_title($page_id); ?>
+												| <?php echo get_the_content( null, false, $page_id); ?>
+
+							.t-menu_underline()
+
+				.col.s-header_r2c2
+					a(href='/cart').s-header_cart.l-underline
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/cart.svg').s-header_cart-icon
+						.s-header_cart-count Корзина 
+							span <?php echo $goods_count = sprintf($woocommerce->cart->cart_contents_count); ?>
+
+	.alert

@@ -1,0 +1,155 @@
+// ::-webkit-scrollbar
+// {
+// 	width: 2px;
+// 	height: 2px;
+
+// 	border-radius: 10px;
+// 	background-color: $ll-gray;
+// 	transition: 200ms ease all;
+// }
+
+// // ::-webkit-scrollbar:hover{
+// // 	width: 10px;
+// // }
+
+// ::-webkit-scrollbar-button
+// {
+// 	display: none;
+// }
+
+// ::-webkit-scrollbar-thumb
+// {
+// 	border-radius: 10px;
+// 	background-color: $red;
+// }
+
+// ::-webkit-scrollbar-track
+// {
+// 	border-radius: 10px;
+// 	background-color: $ll-gray;
+// }
+
+// ::-webkit-scrollbar-track-piece
+// {
+// 	border-radius: 10px;
+// 	background-color: $ll-gray;;
+// }
+
+:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+::selection {
+	background-color: #E1F2FF;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+html, body {
+	// min-width: 286px;
+	min-width: 320px;
+	// background-color: $bg-blue;
+
+}
+
+body {
+	font-family: $gotham;
+	font-size: 16px;
+	color: $l-black;
+
+	// @media(min-width: ($lg + 1)) {
+	// 	font-size: 20px;
+	// }
+	&.fixed {
+		overflow: hidden;
+		// filter: blur(1px);
+		// @media (max-width: $md){
+		// 	overflow: hidden;
+		// }
+	}
+}
+
+form {
+	margin-block-end: 0em;
+}
+
+strong, b, .bold {
+	font-family: $gotham-b;
+}
+
+li {
+  list-style-type: none; /* Убираем маркеры */
+}
+ul {
+  padding-left: 0; /* Сдвигаем список влево */
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+p {
+	margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	
+	&.l-underline {
+		cursor: pointer;
+		position: relative;
+
+		&:after {
+			position: absolute;
+			content: '';
+			height: 2px;
+			width: 100%;
+			background-color: $red;
+			bottom: -5px;
+			left: 0;
+			transition: .1s ease;
+			transform: scaleX(0);
+			border-radius: 2px;
+		}
+
+		&:hover:after {
+			transform: scaleX(1);
+		}
+	}
+
+	&:visited {
+		color: inherit;
+	}
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+table {
+	border-spacing: 0px;
+}
+
+.wrapper {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 417px);
+	// padding-top: 90px;
+
+// @media(min-width: ($xl + 1)) {
+// 	padding-top: 100px;
+// }
+
+}

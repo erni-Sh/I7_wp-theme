@@ -1,0 +1,90 @@
+extends ./includes/tmpl.pug
+
+block main
+	section.container.page-search
+		.count-results
+			.row
+				.col-12
+					| По запросу "Пишем сюда запрос" мы нашли: 27 результатов
+
+
+	section.container.page-search
+		.row
+			.col-12.page-search_results
+				.tabs
+					.tab Продукция(25)
+					.tab.js-active Документация(1)
+					.tab Сайт(1)
+
+	section.container.page-search
+		.row.tabs-contents
+			.col-12
+				.tab-content.tab-goods
+					| товары
+				.tab-content.tab-docs.js-active
+					mixin tabDoc
+						.tab-docs_item
+							.tab-docs_item-trumb
+								img(src='/img/icons/pdf-icon.svg')
+							.tab-docs_item-name 
+								a(href='' target="_blank") Техническое описание продукта
+
+					+tabDoc
+					+tabDoc
+					+tabDoc
+					+tabDoc
+				.tab-content.tab-site
+					//- | <?php
+					//- |	global $wp_query; ?>
+					//- h2 Результатов поиска по запросу "
+					//- 	| <?php echo $_GET['s'];?>
+					//- 	| ": 
+					//- 	| <?php echo $wp_query->found_posts ?>
+
+					|
+					| <?php 
+					|
+					| $args = array_merge( $wp_query->query, array( 'post_type' => "post", 'posts_per_page' => 10) );
+					|	query_posts($args);
+					|
+					| if (have_posts()) : while (have_posts()) : the_post();
+					| ?>
+					|
+					.tab-site_item
+						h5.tab-site_title
+							a(href!="<?php the_permalink();?>")
+								|
+								|	<?php  
+								|	  $title = get_the_title();  
+								|	  $keys = explode(" ",$s);  
+								|	  $title = preg_replace('/('.implode('|', $keys) .')/iu', '<strong class="search_expt">\0</strong>', $title);  
+								|	echo $title;  
+								|	?> 
+								|	
+						.tab-site_excerpt
+							| <?php  
+							| $excerpt = get_the_excerpt();  
+							| $keys = explode(" ",$s);  
+							| $excerpt = preg_replace('/('.implode('|', $keys) .')/iu', '<strong class="search_expt">\0</strong>', $excerpt);  
+							| echo '<p>', $excerpt, '</p>';  
+							| ?>
+							|
+
+					
+					|
+					| <?php endwhile; else: ?>
+					p Поиск не дал результатов.
+					| <?php endif;?>
+					|
+
+					//- .row
+					//- 	.col-12
+					//- 		|
+					//- 		| <?php the_posts_pagination( array(
+					//- 		| 	'prev_text'          => __( '<НАЗАД'),
+					//- 		| 	'next_text'          => __( 'ВПЕРЕД>'),
+					//- 		| 	'end_size'     => 1,
+					//- 		|	) ) ?>
+					//- 		|
+
+

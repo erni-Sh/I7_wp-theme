@@ -1,0 +1,230 @@
+extends ./includes/tmpl.pug
+
+block main
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Главная
+
+	section.container.main-page_top
+		.row
+			.col-xxl-9.col-lg-8.main-slider_parrent
+				.main-slider.swiper-container
+					.swiper-wrapper
+
+						mixin topSlides()
+							.swiper-slide.single-slider(style="background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 58%), url('/img/backgrounds/main-slider.jpg')")
+								a(href='#').single-slider_content
+									.category(data-swiper-parallax="-600")
+										| Пневматические цилиндры
+									.title(data-swiper-parallax="-1800")
+										h1.title ISO/VDMA
+									.descr.text-big(data-swiper-parallax="-2700")
+										p Современный дизайн
+										p Адаптивное демпфирование
+										p Уменьшенная сила трения
+						
+						+topSlides()
+						+topSlides()
+						+topSlides()
+						+topSlides()
+						+topSlides()
+						+topSlides()
+						+topSlides()
+
+					//- If we need pagination
+					.swiper-pagination
+
+			.col-xxl-3.col-lg-4
+				.side-news
+					.title Новости
+
+					mixin single-news()
+						a(href='#').single-news
+							.trumb
+								img(src!='/img/backgrounds/single-news.jpg')
+							.descr
+								.tag
+									| Консолидация
+								.title
+									| Название новости
+								.date
+									| 05 ФЕВ 2021
+					
+					+single-news
+					+single-news
+					+single-news
+					.more
+						a(href='#') Больше новостей
+
+	section.container.mob-menu-on-main
+		.row
+			.col-12
+				ul
+					li
+						a(href='/products.html')
+							| Продукция
+					li
+						a(href='/solutions.html')
+							| Решения
+					li
+						a(href='/brands.html')
+							| Бренды
+					li
+						a(href='/consolidation.html')
+							| Консолидация
+					li
+						a(href='/support.html')
+							| Поддержка
+					li
+						a(href='/about_us.html')
+							| О нас
+
+	section.container
+		.row
+			.col-12.main-page_middle
+				.sidebar
+					.menu-manufacturers.swiper-container
+						ul.swiper-wrapper
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/norgren_icon.svg').icon
+									img(src!='/img/icons/manufacturers/norgren_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/buschjost_icon.svg').icon
+									img(src!='/img/icons/manufacturers/buschjost_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/herion_icon.svg').icon
+									img(src!='/img/icons/manufacturers/herion_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/maxseal_icon.svg').icon
+									img(src!='/img/icons/manufacturers/maxseal_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/tompson_icon.svg').icon
+									img(src!='/img/icons/manufacturers/tompson_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/imf_icon.svg').icon
+									img(src!='/img/icons/manufacturers/imf_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/fas_icon.svg').icon
+									img(src!='/img/icons/manufacturers/fas_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/kip_icon.svg').icon
+									img(src!='/img/icons/manufacturers/kip_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/kloehn_icon.svg').icon
+									img(src!='/img/icons/manufacturers/kloehn_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/pneumatex_icon.svg').icon
+									img(src!='/img/icons/manufacturers/pneumatex_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/ta_icon.svg').icon
+									img(src!='/img/icons/manufacturers/ta_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/heimeier_icon.svg').icon
+									img(src!='/img/icons/manufacturers/heimeier_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/aircom_icon.svg').icon
+									img(src!='/img/icons/manufacturers/aircom_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/aquasermo_icon.svg').icon
+									img(src!='/img/icons/manufacturers/aquasermo_title.svg').logo
+							li.swiper-slide.manufacturer
+								a(href!='#')
+									img(src!='/img/icons/manufacturers/linak_icon.svg').icon
+									img(src!='/img/icons/manufacturers/linak_title.svg').logo
+
+				.right-content.show-scroll
+					//- 
+					.row.products-1-lev
+						mixin product1Level(title, img)
+							.col-xl-4.col-lg-6
+								a(href='#').product-1-lev
+									h6.product-1-lev_title= title
+									.product-1-lev_descr.text-small
+										p Шаблон текста Шаблон текстаШаблон текста Шаблон текста Шаблон текста
+									.product-1-lev_trumb
+										img(src!= img)
+
+						+product1Level('Приводы пневматические', '/img/trumb-cat/Actuators.png')
+						+product1Level('Распределители пневматические', '/img/trumb-cat/airline_red.png')
+						+product1Level('Подготовка сжатого воздуха', '/img/trumb-cat/airline_red.png')
+						+product1Level('Арматурные клапаны', '/img/trumb-cat/Indastrial-valves.png')
+						+product1Level('Балансировочные и регулирующие клапаны', '/img/trumb-cat/Balance_1.png')
+						+product1Level('Пропорциональные клапаны', '/img/trumb-cat/Proportional-valves.png')
+						+product1Level('Компактные клапаны', '/img/trumb-cat/Minivalves.png')
+						+product1Level('Реле давления', '/img/trumb-cat/Switches1.png')
+						+product1Level('Вакууумная техника', '/img/trumb-cat/Vacuum_1.png')
+						//- +product1Level('Приводы пневматические', '/img/trumb-cat/Actuators.png')
+						//- +product1Level('Распределители пневматические', '/img/trumb-cat/airline_red.png')
+						//- +product1Level('Подготовка сжатого воздуха', '/img/trumb-cat/airline_red.png')
+						//- +product1Level('Арматурные клапаны', '/img/trumb-cat/Indastrial-valves.png')
+						//- +product1Level('Балансировочные и регулирующие клапаны', '/img/trumb-cat/Balance_1.png')
+						//- +product1Level('Пропорциональные клапаны', '/img/trumb-cat/Proportional-valves.png')
+						//- +product1Level('Компактные клапаны', '/img/trumb-cat/Minivalves.png')
+						//- +product1Level('Реле давления', '/img/trumb-cat/Switches1.png')
+						//- +product1Level('Вакууумная техника', '/img/trumb-cat/Vacuum_1.png')
+
+
+	section.container.main-page_bot
+		.row
+			.col-12
+				h3 Решения
+		.row.solutions
+			.swiper-container.solutions-slider
+				.swiper-wrapper
+					mixin solutionCard(img, title, link)
+						.swiper-slide.col-xl-3.col-md-4.col-10
+							a(href!= link).solution-card.js-card-menu-click(style='background-color: #BE1D25')
+								.solution-card_inner
+									.solution-card_trumb
+										img(src!= img)
+									.solution-card_title
+										h5= title
+
+					+solutionCard(
+						'/img/solutions/oil.jpg',
+						'Нефтегазовая отрасль',
+						'oil-and-gas-industry')
+					+solutionCard(
+						'/img/solutions/metallurgical-industry.png',
+						'Металлургическая отрасль',
+						'metallurgical-industry')
+					+solutionCard(
+						'/img/solutions/Cement-concrete-industry.png',
+						'Цементно-бетонная промышленность', '#')
+					+solutionCard(
+						'/img/solutions/Food-industry.png',
+						'Пищевая промышленность ',
+						'food-industry')
+					+solutionCard(
+						'/img/solutions/oil.jpg',
+						'Нефтегазовая отрасль',
+						'oil-and-gas-industry')
+					+solutionCard(
+						'/img/solutions/metallurgical-industry.png',
+						'Металлургическая отрасль',
+						'metallurgical-industry')
+					+solutionCard(
+						'/img/solutions/Cement-concrete-industry.png',
+						'Цементно-бетонная промышленность', '#')
+					+solutionCard(
+						'/img/solutions/Food-industry.png',
+						'Пищевая промышленность ',
+						'food-industry')
+

@@ -1,0 +1,276 @@
+extends ./includes/tmpl.pug
+
+block main
+	|
+	| <?php
+	| $s = $_GET['s'];
+	| if($s) :
+	| ?>
+	| 
+
+	//- рассчет данных по товарам
+	| <?php
+	| $product_args = array( 
+	|		'post_type' => 'product', 
+	|		'product_cat' => 'production', 
+	|		's' => '"' . $s . '"', 
+	|		'post_status' => 'publish', 
+	|		'posts_per_page' => -1,
+	|		'relevanssi' => true
+	| );
+
+	| $products = new WP_Query( $product_args );
+	| $found_on_products = $products->found_posts;
+	//- post on page - 10
+	| $max_pages = ceil($found_on_products / 10);
+	| ?>
+	|
+
+	//- Рассчет по документам
+	| <?php 
+	| $found_on_docs = 0;
+	| $docs_array = [];
+	| while ( $products->have_posts()) :
+	| 	$products->the_post();
+	| 	$tech_link = basename(get_field("tech-link"));
+	|	 	$finded = stripos($tech_link, $s);
+
+	| 	if(strlen($finded)):
+	| 		if(!in_array($tech_link, $docs_array)) :
+	| 			$docs_array[$found_on_docs] = $tech_link;
+	| 			$found_on_docs++;
+
+	| 		endif;
+	| 	endif;
+	| endwhile;
+	| ?>
+
+	//- Рассчет по сайту
+	| <?php
+	| $site_args = array(
+	|		'post_type' => 'post',
+	|		's' => $s,
+	|		'post_status' => 'publish',
+	|		'posts_per_page' => 20,
+	|		'relevanssi' => true
+	| );	
+
+	| $site = new WP_Query( $site_args );
+	| $found_on_site = $site->found_posts;
+	| ?>
+	|
+	| <?php 
+	| else :
+	| $found_on_products = 0;
+	| $found_on_docs = 0;
+	| $found_on_site = 0;
+	| endif;
+	| ?>
+	section.container.page-search
+		.count-results
+			.row
+				| <?php
+				| if(!$s): ?>
+				.col-12 Введите поисковый запрос
+				| <?php else :
+				| $founded_total = $found_on_products + $found_on_docs + $found_on_site;
+				//- | $founded_total = 12;
+				| if($founded_total) :
+				| $word_result = 'результатов';
+				| $word_finded = 'найдено';
+				| if(!($founded_total > 10 && $founded_total < 20)):
+				| $var = $founded_total % 10;
+				| if( $var == 2 || $var == 3 || $var == 4) $word_result = 'результата';
+				| if( $var == 1) : 
+				|		$word_result = 'результат';
+				|		$word_finded = 'найден';
+				| endif;
+				| endif;
+				| ?>
+				.col-12 По запросу «<?php echo $s;?>» <?php echo $word_finded . ': ' . $founded_total . ' ' . $word_result; ?>
+				| <?php else: ?>
+				//- .col-12 По вашему запросу, к сожалению, ничего не найдено.
+				.col-12 По вашему запросу «<?php echo $s;?>» ничего не найдено.
+				| <?php endif;
+				| endif; ?>
+
+	section.container.page-search
+		.row
+			.col-12.page-search_results
+				.tabs
+					.tab.js-active Продукция(<?php echo $found_on_products; ?>)
+					.tab Документация(<?php echo $found_on_docs; ?>)
+					.tab Сайт(<?php echo $found_on_site ?>)
+
+
+	section.container.page-search
+
+		.row.tabs-contents
+			|
+			| <?php if($s) : ?>
+			|
+			.col-12
+				.tab-content.tab-goods.js-active.js-menu-pages
+					|
+					| <?php if($found_on_products) : ?>
+					|
+					.products-list
+						| 
+						| <?php get_new_cards('production', null, '"' . $s . '"'); ?>
+						|
+
+					.row
+						.col-12.text-center
+							|
+							| <?php if($max_pages > 1) : ?>
+							|
+							button.btn_white.js-loader.loader_new_cards(data-page=2 data-category!="production" data-search!='<?php echo $s ?>' data-container='.products-list' data-maxpage!="<?php echo $max_pages ?>") 
+								span Показать еще
+							.lds-facebook
+								div
+								div
+								div
+							|
+							| <?php endif ?>
+							|
+
+					|
+					| <?php else : ?>
+					|
+					.article
+						P 
+							b Повторите поиск или направьте нам запрос
+						button.js-popUp-open Направить запрос
+
+					|
+					| <?php endif; ?>
+					|
+
+				.tab-content.tab-docs
+
+					|
+					| <?php if($found_on_docs) : ?>
+					| <?php 
+					| foreach ($docs_array as $doc_item) :
+					| ?>
+
+					.tab-docs_item
+						.tab-docs_item-trumb
+							img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/pdf-icon.svg')
+						.tab-docs_item-name 
+							a(href!='<?php echo get_site_url() . "/wc-products-import/" . $doc_item; ?>' target="_blank") <?php echo $doc_item; ?>
+					|
+					| <?php 
+					| endforeach;
+					| else : ?>
+					|
+					.article
+						P 
+							b Повторите поиск или направьте нам запрос
+						button.js-popUp-open Направить запрос
+
+					|
+					| <?php endif; ?>
+					|
+
+				.tab-content.tab-site
+
+					|
+					| <?php if($found_on_site) :
+					| while ( $site->have_posts()) :
+					| $site->the_post();
+					| ?>
+					|
+					.tab-site_item
+						h5.tab-site_title
+							a(href!="<?php the_permalink();?>")
+								|
+								|	<?php 
+								| $title = $post->post_title;
+								//- |	  $keys = explode(" ",$s);  
+								//- |	  $title = preg_replace('/('.implode('|', $keys) .')/iu', '<strong class="search_expt">\0</strong>', $title);  
+								|	echo $title;  
+								|	?> 
+								|	
+						.tab-site_excerpt
+							| <?php  
+							| $excerpt = $post->post_excerpt;  
+							| echo '<p>', $excerpt, '</p>';  
+							| ?>
+							|
+
+					
+					|
+					| <?php endwhile; ?>
+
+					|
+
+					|
+					| <?php else : ?>
+					|
+					.article
+						P 
+							b Повторите поиск или направьте нам запрос
+						button.js-popUp-open Направить запрос
+
+					|
+					| <?php endif; ?>
+					|
+
+					//- .row
+					//- 	.col-12
+					//- 		|
+					//- 		| <?php the_posts_pagination( array(
+					//- 		| 	'prev_text'          => __( '<НАЗАД'),
+					//- 		| 	'next_text'          => __( 'ВПЕРЕД>'),
+					//- 		| 	'end_size'     => 1,
+					//- 		|	) ) ?>
+					//- 		|
+
+
+			|
+			| <?php endif; ?>
+			|
+
+	section#popUp.popUp
+		.popUp_wrapper
+			//- .popUp_close
+			.popUp_inner
+				.popUp-form
+					form.form
+						.popUp-form_title Связаться с нами
+						.popUp-form_descr
+							| Наши эксперты ответят вам, как только обработают ваше сообщение.
+
+						.pos-rel
+							input(name="name" placeholder="" required).form__inputs.name
+							label.form__label Ваше имя
+							.error Напишите свое имя
+						.pos-rel
+							input(name="email" placeholder="" required).form__inputs.e-mail
+							label.form__label Ваш email
+							.error Напишите ваш email
+						.pos-rel
+							textarea(name="message" placeholder="" required).textarea.form__inputs.name
+							label.form__label Ваше сообщение
+							//- .error Напишите сообщение
+						.form__agree
+							input(type="checkbox").agree.form__checkbox
+							label(for="argee") соглашаюсь с условиями 
+								a(href="/docs" target="_blank") Политики конфиденциальности 
+							.error Подтвердите свое согласие
+						.form__btn
+							//- input(type="hidden" name="subject" value="Консолидация")
+							button.submit
+								b Направить запрос
+					
+					.form_send-success
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Ваше сообщение отправлено
+						.descr Наши эксперты ответят вам, как только обработают ваше сообщение.
+						button.btn.js-return-form.popUp_close Хорошо
+					.form_send-error
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/send-ok.png')
+						.title Ваше сообщение не отправлено
+						.descr Что-то пошло не так, повторите попытку.
+						button.btn.js-return-form Повторить

@@ -1,0 +1,7 @@
+.col-12
+	.support-inside-card
+		.support-inside-card_trumb
+			img(src!='<?php echo get_the_post_thumbnail_url() ?>')
+		.support-inside-card_content
+			h6.support-inside-card_title <?php the_title() ?>
+			<?php the_content() ?>

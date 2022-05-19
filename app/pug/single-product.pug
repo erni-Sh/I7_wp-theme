@@ -1,0 +1,32 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .woocommerce-notices-wrapper
+	//- 	| <?php wc_print_notices(); ?>
+
+	section.container.page-search
+		.count-results
+			.row
+				.col-12
+
+	section.container.page-search
+		.row
+			.col-12.page-search_results
+				.tabs
+					.tab.js-active Продукция
+					//- .tab Документация(<?php echo $found_on_docs; ?>)
+					//- .tab Сайт(<?php echo $found_on_site ?>)
+
+
+	section.container.page-search
+
+		.row.tabs-contents
+			.col-12
+				.tab-content.tab-goods.js-active.js-menu-pages
+					.products-list
+						|	<?php 
+						| if($post) :
+						//- | setup_postdata($post);
+						//- | set_query_var( 'post', $post );
+						| get_template_part('elements/template_product_card');
+						| endif; ?>

@@ -1,0 +1,31 @@
+extends ./includes/tmpl.pug
+
+block main
+
+
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+
+	section.container
+		.row
+			.col-12
+				.woocommerce-notices-wrapper
+					|	<?php wc_print_notices(); ?>
+
+		.row
+			.col-12
+				|
+				|<?php if (have_posts()) : 
+				|	while (have_posts()) : the_post(); ?> 
+				|
+				| <?php the_content() ?>
+
+				|
+				| <?php endwhile; 
+				| endif;  ?>
+
+
+

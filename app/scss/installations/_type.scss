@@ -1,0 +1,83 @@
+h1, .h1 {
+	margin-block-start: 0;
+  margin-block-end: 0;
+
+	font-family: $gotham-b;
+	font-size: 47px;
+	
+}
+
+h3, .h3 {
+	margin-block-start: 0rem;
+  margin-block-end: 0rem;
+
+  font-family: $gotham-b;
+	font-size: 25px;
+	line-height: 19px;
+}
+
+h4, .h4 {
+	margin-block-start: 0rem;
+  margin-block-end: 0rem;
+
+  font-family: $gotham-b;
+	font-size: 20px;
+	line-height: 23px;
+}
+
+h5, .h5 {
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
+
+	font-family: $gotham-b;
+	font-size: 18px;
+}
+
+h6, .h6 {
+	font-family: $gotham-b;
+	font-size: 12px;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.gray-card {
+	background-color: $ll-gray;
+	border-top: 2.2px solid $red;
+}
+
+.t-menu {
+	font-size: 18px;
+	font-weight: 800;
+}
+
+.text-small {
+	font-size: 13px;
+	line-height: 19px;
+}
+
+.text-big {
+	font-size: 20px;
+	line-height: 26px;
+	@media (max-width: $md){
+		font-size: 10px;
+		line-height: 14px;
+	}
+}
+
+.pos-rel {
+	position: relative;
+}
+
+.is-hidden {
+	// display: none;
+	visibility: hidden;
+}
+
+.is-visible {
+	visibility: inherit;
+	// display: block !important;
+}
+
+.op-5 {
+	opacity: .5;
+}

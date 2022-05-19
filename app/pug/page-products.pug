@@ -1,0 +1,117 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .woocommerce-notices-wrapper
+	//- 	| <?php wc_print_notices(); ?>
+		
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image:url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/top-background_1.jpg')")
+					.title-wrap
+						h1 Продукция
+					.text-big <?php echo category_description(55); ?>
+
+	section.container
+		.row
+			.col-12.page_middle
+				//-.d-flex.page_bottom
+				.sidebar
+					.side-dropdown-menu
+						a(href='#!').title.js-scrollUp Продукция
+						.menu-1-lev
+							ul
+								li.hidden
+								|
+								| <?php 
+								| function render_products_menu_items($products_cat) {
+								| foreach ($products_cat as $product_cat) :
+								| ?>
+								|
+								
+								//- li
+									
+									//- a(href!='<?php echo "#" . $product_cat->slug; ?>').title <?php echo $product_cat->name; ?>
+
+								| <?php
+								| $product_cat_nested = get_terms( array(
+								| 	'taxonomy' => 'product_cat',
+								| 	'parent' => $product_cat->term_id,
+								| 	'orderby' => 'term_order',
+								| 	'hide_empty' => 0
+								| ));
+								| if($product_cat_nested) : ?>
+
+								li
+									a(href!='<?php echo "#" . $product_cat->slug; ?>').title <?php echo $product_cat->name; ?>
+									.menu-nested
+										ul
+											| <?php render_products_menu_items($product_cat_nested) ?>
+								
+								| <?php else: ?>
+								
+								li.last-nesting.js-scrollUp
+									a(href!='<?php echo "#" . $product_cat->slug; ?>').title <?php echo $product_cat->name; ?>
+									//- 'Серия ' .
+								| <?php 
+								| endif; ?>
+
+								| <?php
+								| endforeach;
+								| }; ?>
+								|
+								| <?php
+								| $product_cat_1lev = get_terms('product_cat', 'parent=55&orderby=ID&hide_empty=0');
+								| if($product_cat_1lev) render_products_menu_items($product_cat_1lev);
+								| ?>
+
+				.right-content
+					//- без slug - открывает как первую
+					.js-menu-pages(data-page='')
+						.row.products-1-lev
+							| <?php get_new_WC_cards(55, 'product_1lev_card'); ?>
+
+
+					//- рекурсивная функция вывода всех вложенностей категории					|
+					|
+					| <?php 
+					| function render_products_cat_cards($products_cat) {
+					| foreach ($products_cat as $product_cat) : ?>
+					|
+					
+					.js-menu-pages(data-page!='<?php echo $product_cat->slug ?>')
+						.row.products-2-lev
+							| <?php get_new_WC_cards($product_cat->term_id, 'product_23lev_card'); ?>
+					
+					|
+					| <?php 
+					| $product_cat_nested = get_terms( array(
+					| 	'taxonomy' => 'product_cat',
+					| 	'parent' => $product_cat->term_id,
+					| 	'orderby' => 'term_order',
+					| 	'hide_empty' => 0
+					| ));
+					| if($product_cat_nested) :
+					|	render_products_cat_cards($product_cat_nested);
+					| else : ?>
+					|
+					
+					.js-menu-pages(data-page!='<?php echo $product_cat->slug ?>')
+						| <?php include (TEMPLATEPATH . '/elements/template_products_list.php'); ?>
+
+					|
+					| <?php
+					| endif;
+					| endforeach;
+					| ?>
+					
+					| <?php };
+					| if($product_cat_1lev) render_products_cat_cards($product_cat_1lev);
+					|	?>
+					|

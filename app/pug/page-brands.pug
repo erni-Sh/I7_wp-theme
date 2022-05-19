@@ -1,0 +1,126 @@
+
+extends ./includes/tmpl.pug
+
+block main
+
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image: linear-gradient(90deg, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.65) 100%), url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/Brand.jpg')")
+					h1 Бренды
+					.text-big <?php echo category_description(22); ?>
+					//- В наш портфель продукции мирового класса входят Norgren, Buschjost, FAS, Herion и Maxseal. Доказав свою ценность на протяжении многих лет, они стали одними из самых надежных  имен в области управления жидкостями и движением. Благодаря этому мы можем помочь нашим клиентам решать величайшие инженерные задачи мира - надежно, безопасно и эффективно.
+
+	section.container.page_middle.js-card-menu-container
+		.row.page-brand.solutions
+			|
+			| <?php
+			| $product_cat = get_terms('product_cat', 'parent=22&orderby=term_order&hide_empty=0');
+			|	if($product_cat) :
+			| foreach ($product_cat as $cat) :
+			| ?>
+
+			.col-xl-3.col-md-4
+					a(href!='<?php echo "#" . $cat->slug; ?>').solution-card.js-scrollUp(style!='background-color: <?php echo get_field("color", "product_cat_" . $cat->term_id) ?>')
+						.solution-card_inner
+							.solution-card_trumb
+								| <?php 
+								| $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+								| ?>
+								img(src!='<?php echo wp_get_attachment_url( $thumbnail_id ); ?>')
+							.solution-card_logo
+								img(src!= '<?php echo get_field("icon", "product_cat_" . $cat->term_id); ?>').icon
+								img(src!= '<?php echo get_field("logo", "product_cat_" . $cat->term_id); ?>').logo
+							.solution-card_descr
+								p <?php echo $cat->description; ?>
+			| <?php
+			|	endforeach;
+			|	endif;
+			| ?>
+
+
+	section.container.js-card-menu-inside-container
+		.row.page-brand
+			.col-12.page_middle
+				.sidebar
+					.menu-manufacturers.swiper-container
+						ul.swiper-wrapper
+							| <?php
+							|	if($product_cat) :
+							| foreach ($product_cat as $cat) :
+							| ?>
+
+							li.swiper-slide.manufacturer.js-scrollUp
+								a(href!='<?php echo "#" . $cat->slug; ?>')
+									img(src!='<?php echo get_field("icon", "product_cat_" . $cat->term_id); ?>').icon
+									img(src!='<?php echo get_field("logo", "product_cat_" . $cat->term_id); ?>').logo
+
+							| <?php
+							|	endforeach;
+							|	endif;
+							| ?>
+
+				.right-content
+					
+					| <?php
+					|	if($product_cat) :
+					| foreach ($product_cat as $cat) :
+					| ?>
+
+					.js-menu-pages(data-page!='<?php echo $cat->slug; ?>' data-title!='<?php echo $cat->name; ?>')
+						.row
+							.col-12
+								.brand-about
+									.brand-about_logo
+										img(src!='<?php echo get_field("icon", "product_cat_" . $cat->term_id); ?>').icon
+										img(src!='<?php echo get_field("logo", "product_cat_" . $cat->term_id); ?>').logo
+									.brand-about_descr
+										p <?php echo $cat->description; ?>
+									.brand-about_title
+										| <?php if($cat->count): ?>
+										h3 Продукция бренда
+										| <?php endif; ?>
+
+						.pos-rel.recip-brand-r-content(style='display:none')
+						
+						.row
+							.col-12
+								button.btn_white.js-loader.ldr-r-content.is-hidden(data-page=1 data-category!='<?php echo $cat->slug ?>' data-recipient='.recip-brand-r-content' data-action='render_brand_r_content' )
+									span Показать еще
+
+								.lds-facebook
+									div
+									div
+									div
+
+						//- | <?php						
+						//- | $product_cat_1lev = get_terms('product_cat', 'parent=55&orderby=ID&hide_empty=0');
+						//- | if($product_cat_1lev) :
+						//- | foreach ($product_cat_1lev as $cat_1lev) :
+						//- | ?>
+						//- |
+
+						//- //- Проверку перенес в functions;
+						//- .products-2-lev
+						//- 	//- | <?php get_new_WC_cards($cat_1lev->term_id, 'product_23lev_card', $cat->slug); ?>
+			
+
+
+
+						//- | 
+						//- | <?php 
+						//- | endforeach;
+						//- | endif;
+						//- | ?>
+
+					| <?php
+					|	endforeach;
+					|	endif;
+					| ?>
+

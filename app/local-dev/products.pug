@@ -1,0 +1,283 @@
+extends ./includes/tmpl.pug
+
+block main
+  .container
+    .row
+      .col-12
+        .breadcrumbs
+          img(src!='/img/icons/home.svg')
+          p > Продукция
+
+  section.container.page_top
+    .row
+      .col-12
+        .top-title(style='background-image:url("/img/backgrounds/top-background_1.jpg")')
+          h1 Продукция
+          .text-big
+            | В наш портфель продукции мирового класса входят Norgren, Buschjost, FAS, Herion и Maxseal. 
+            | Доказав свою ценность на протяжении многих лет, они стали одними из самых надежных 
+            | имен в области управления жидкостями и движением. Благодаря этому мы можем 
+            | помочь нашим клиентам решать величайшие инженерные задачи 
+            | мира - надежно, безопасно и эффективно.
+
+  section.container
+    .row
+      .col-12.page_middle
+        //-.d-flex.page_bottom
+        .sidebar
+          .side-dropdown-menu
+            a(href='level-1-products').title.js-product-click Продукция
+            .menu-1-lev
+              ul
+                li.lev-1-item
+                  a(href='level-2-products').title.js-product-click
+                    | Приводы пневматические
+
+                  mixin innerMenuTitles(link, link2)
+                    .menu-2-lev
+                      ul
+                        li.lev-2-item
+                          a(href= link).js-product-click Стандартные пневматические цилиндры ISO/VDMA
+                          .menu-3-lev
+                            ul
+                              li
+                                a(href= link2).js-product-click Профильные пневмоцилиндры ISO 15552
+                              li
+                                a(href='#') Пневмоцилиндры со стяжными  шпильками ISO 15552
+                              li
+                                a(href='#') Профильные пневмоцилиндры
+                              li
+                                a(href='#') Профильные пневмоцилиндры ISO 15552 для взрывоопасных сред с директивой АТEX
+                          //- +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Профильные и силовые пневматические цилиндры
+
+                          mixin lev3menu()
+                            .menu-3-lev
+                              ul
+                                li
+                                  a(href='#').js-product-click Профильные пневмоцилиндры ISO 15552
+                                li
+                                  a(href='#') Пневмоцилиндры со стяжными  шпильками ISO 15552
+                                li
+                                  a(href='#') Профильные пневмоцилиндры
+                                li
+                                  a(href='#') Профильные пневмоцилиндры ISO 15552 для взрывоопасных сред с директивой АТEX
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Круглые пневматические цилиндры
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Бесштоковые пневматические цилиндры LINTRA
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Баллонные цилиндры (сильфоны)
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Поворотные приводы
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Приводы с направляющими
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Пневматические цилиндры из нержавеющей стали
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Аммортизаторы (демпфер)
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Преобразователи давления
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Датчики положения
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Крепления и аксессуары
+                          +lev3menu()
+                        li.lev-2-item
+                          a(href='#') Крепления и аксессуары
+                          +lev3menu()
+                          
+                  +innerMenuTitles('level-3-products','level-4-products')
+                li.lev-1-item
+                  a(href='#').js-product-click Распределители пневматические
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Подготовка сжатого воздуха
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Арматурные клапаны
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Балансировочные и регулирующие клапаны
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Пропорциональные клапаны
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Компактные клапаны
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Реле давления
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Вакууумная техника
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Терморегулирование
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Системы поддержания давления и расширительные баки
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Клапаны системы безопасности для прессов
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Приводы электрические
+                  +innerMenuTitles
+                li.lev-1-item
+                  a(href='#').js-product-click Анимированные водные стены
+                  +innerMenuTitles
+
+
+        .right-content
+          .js-menu-pages(data-page='level-1-products')
+            .row.products-1-lev
+              mixin product1Level(title, img, link)
+                .col-xl-4.col-lg-6
+                  a(href= link).product-1-lev.js-product-click
+                    h6.product-1-lev_title= title
+                    .product-1-lev_descr.text-small
+                      p Шаблон текста Шаблон текстаШаблон текста Шаблон текста Шаблон текста
+                    .product-1-lev_trumb
+                      img(src!= img)
+
+              +product1Level('Приводы пневматические', '/img/trumb-cat/Actuators.png', 'level-2-products')
+              +product1Level('Распределители пневматические', '/img/trumb-cat/airline_red.png', '#')
+              +product1Level('Подготовка сжатого воздуха', '/img/trumb-cat/airline_red.png')
+              +product1Level('Арматурные клапаны', '/img/trumb-cat/Indastrial-valves.png')
+              +product1Level('Балансировочные и регулирующие клапаны', '/img/trumb-cat/Balance_1.png')
+              +product1Level('Пропорциональные клапаны', '/img/trumb-cat/Proportional-valves.png')
+              +product1Level('Компактные клапаны', '/img/trumb-cat/Minivalves.png')
+              +product1Level('Реле давления', '/img/trumb-cat/Switches1.png')
+              +product1Level('Вакууумная техника', '/img/trumb-cat/Vacuum_1.png')
+              +product1Level('Приводы пневматические', '/img/trumb-cat/Actuators.png')
+              +product1Level('Распределители пневматические', '/img/trumb-cat/airline_red.png')
+              +product1Level('Подготовка сжатого воздуха', '/img/trumb-cat/airline_red.png')
+              +product1Level('Арматурные клапаны', '/img/trumb-cat/Indastrial-valves.png')
+              +product1Level('Балансировочные и регулирующие клапаны', '/img/trumb-cat/Balance_1.png')
+              +product1Level('Пропорциональные клапаны', '/img/trumb-cat/Proportional-valves.png')
+              +product1Level('Компактные клапаны', '/img/trumb-cat/Minivalves.png')
+              +product1Level('Реле давления', '/img/trumb-cat/Switches1.png')
+              +product1Level('Вакууумная техника', '/img/trumb-cat/Vacuum_1.png')
+
+          .js-menu-pages(data-page='level-2-products')
+            .row.products-2-lev
+
+              mixin product23Level(title, img, link)
+                .col-12
+                  a(href= link).product-23-lev.js-product-click
+                    .product-23-lev_trumb
+                      img(src!= img)
+                    .product-23-lev_content
+                      h6.product-23-lev_title= title
+                      .product-23-lev_descr.text-small
+                        p Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста 
+
+
+              +product23Level('Стандартные пневматические цилиндры ISO/VDMA', '/img/trumb-cat/airline_red.png', 'level-3-products')
+              +product23Level('Профильные и силовые пневматические цилиндры', '/img/trumb-cat/airline_red.png')
+              +product23Level('Круглые пневматические цилиндры', '/img/trumb-cat/airline_red.png')
+              +product23Level('Бесштоковые пневматические цилиндры LINTRA', '/img/trumb-cat/airline_red.png')
+              +product23Level('Баллонные цилиндры (сильфоны)', '/img/trumb-cat/airline_red.png')
+
+          .js-menu-pages(data-page='level-3-products')
+            .row.products-3-lev
+              +product23Level('Профильные пневмоцилиндры ISO 15552', '/img/trumb-cat/airline_red.png', 'level-4-products')
+              +product23Level('Пневмоцилиндры со стяжными  шпильками ISO 15552', '/img/trumb-cat/airline_red.png')
+              +product23Level('Профильные пневмоцилиндры', '/img/trumb-cat/airline_red.png')
+              +product23Level('Профильные пневмоцилиндры ISO 15552 для взрывоопасных сред с директивой АТEX', '/img/trumb-cat/airline_red.png')
+          .js-menu-pages(data-page='level-4-products')
+            .row.products-4-lev
+              .col-12
+                .row
+                  .col-lg-9.products-4-lev_search-prnt
+                    .products-4-lev_search              
+                      input(placeholder='Поиск по продукции')
+                      img(src!='/img/icons/search-gray.svg').search-icon
+                  .col-lg-3.products-4-lev_total
+                      p Всего товаров: 
+                        span 1720
+
+
+              mixin product4Level(title, img)
+                .col-12
+                  .product-4-lev
+                    a(href=!'').product-4-lev_trumb
+                      img(src!= img)
+                    .product-4-lev_content
+                      h3.product-4-lev_title
+                        a(href=!'')= title
+                      .row
+                        .col-xl-7.product-4-lev_descr
+                          .product-4-lev_catalog
+                            p
+                              b Бренд:
+                              a(href!='#') Norgren
+                            p
+                              b Артикул:
+                              | P1677B1-4.00X8.000-PS
+                          .product-4-lev_value
+                            ul
+                              li Адаптивная система амортизации «ACS»
+                              li Магнитный поршень
+                              li Модульные крепления
+                          .product-4-lev_prop
+                            table
+                              tr
+                                td 
+                                  b Длина хода:
+                                td 8 "
+                              tr
+                                td 
+                                  b Размер порта:
+                                td 1/2 "NPT
+                              tr
+                                td 
+                                  b Диаметр цилиндра:
+                                td 4 дюйма
+                              tr
+                                td 
+                                  b Амортизация:
+                                td Адаптивная&nbsp;система&nbsp;амортизации&nbsp;(ACS)
+                          .product-4-lev_docs
+                            img(src!='/img/icons/pdf-icon.svg').product-4-lev_docs-icon
+                            a(href!='') Техническое описание продукта
+
+                        .col-xl-5.product-4-lev_count
+                          .product-4-lev_price 2000 р. с НДС
+                          .product-4-lev_quantity
+                            p Количество:
+                            input(type="number" value='0')
+                          
+                          button.product-4-lev_btn
+                            a(href='/cart.html') Добавить в Корзину
+
+              .paged(data-page="1")
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+              .paged(data-page="2").is-hidden
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+              .paged(data-page="3").is-hidden
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+                +product4Level('Цилиндр NFPA серии P Диаметр 4,00 дюйма, ход 8000 дюймов, 1/2 NPT', '/img/trumb-cat/Actuators.png')
+
+              .col-12.text-center
+                button.btn_white.js-show-more(data-paged=1 data-container='.products-4-lev') Показать еще

@@ -1,0 +1,114 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image: linear-gradient(90deg, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.65) 100%), url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/Podderzhka.jpg')")
+					h1 Поддержка
+					.text-big <?php echo category_description(32); ?>
+						//- | Мы помогаем нашим заказчикам получить максимальную
+						//- | отдачу от нашей продукции, что&nbsp;позволит снизить 
+						//- | общую стоимость владения.
+
+	section.container
+		.row
+			.col-12.page_middle
+				| <?php 
+				| $sub_cats = get_categories( array(
+				| 	'child_of' => 32,
+				| 	'hide_empty' => 0
+				| ) );
+				|	?>
+				| 
+
+				.sidebar
+					.side-menu
+						.title Поддержка
+						.menu-wrapper
+							|
+							| <?php 
+							| if( $sub_cats ): ?>
+							|
+							ul
+								li(hidden)
+
+								|
+								|	<?php 
+								| foreach( $sub_cats as $cat ) :
+								| ?>
+								|
+							
+								li.menu-item
+									a(href!='<?php echo "#" . $cat->slug ?>').title <?php echo $cat->name ?>
+																				
+								|
+								| <?php 
+								| endforeach; ?>
+								|
+
+							|
+							| <?php 
+							| endif;
+							| ?>
+							|
+
+				.right-content
+					//- первая страница - клон меню
+					.js-menu-pages(data-page='' data-title='')
+						.row.support-cards
+							|
+							| <?php 
+							| if( $sub_cats ):
+							|	foreach( $sub_cats as $cat ) : 
+							| ?>
+							|
+
+							.col-xl-4
+								a(href!='<?php echo "#" . $cat->slug ?>').support-card.gray-card
+									h6.support-card_title <?php echo $cat->name ?>
+									.support-card_descr.text-small
+										p <?php echo $cat->description ?>
+									.support-card_trumb
+										img(src!='<?php echo get_field("category-trumb", "category_" . $cat->term_id) ?>')
+
+
+							| <?php 
+							| endforeach;
+							| endif;
+							| ?>
+
+					|
+					| <?php 
+					| if( $sub_cats ):
+					|	foreach( $sub_cats as $cat ) : 
+					| ?>
+					|
+
+					.js-menu-pages(data-page!='<?php echo $cat->slug ?>' data-title!='<?php echo $cat->name ?>')
+						.row
+							.col-12.js-content-recipient
+
+								<?php get_new_cards($cat->term_id); ?>
+						
+						.row
+							.col-12.text-center
+								|
+								| <?php $max_pages = get_max_pages_on_category($cat->term_id, '3'); ?>
+								| <?php if($max_pages > 1) : ?>
+								
+								button.btn_white.loader_new_cards(data-page=2 data-category!="<?php echo $cat->term_id ?>" data-container='.js-content-recipient' data-maxpage!="<?php echo $max_pages ?>") 
+									span Показать еще
+								
+								| <?php endif ?>
+								|
+
+					| <?php 
+					| endforeach;
+					| endif;
+					| ?>

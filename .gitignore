@@ -1,0 +1,21 @@
+
+node_modules/
+
+# misc
+.DS_Store
+Thumbs.db
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+*.http
+*.vscode
+
+# project
+Sh_REC.sublime-project
+Sh_REC.sublime-workspace

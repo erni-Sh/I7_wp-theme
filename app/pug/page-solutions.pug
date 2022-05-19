@@ -1,0 +1,93 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style!="background-image: linear-gradient(90deg, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.65) 100%), url('<?php echo get_template_directory_uri(); ?>/img/backgrounds/Reshenija.jpg')")
+					h1 Решения
+					.text-big <?php echo category_description(25); ?>
+
+	section.container.js-card-menu-container
+		.row.page-solution.solutions
+			|
+			| <?php
+			| $solution_cat = get_terms('product_cat', 'parent=25&orderby=term_order&hide_empty=0');
+			|	if($solution_cat) :
+			| foreach ($solution_cat as $cat) :
+			| ?>
+
+			.col-xl-3.col-md-4
+				a(href!='<?php echo "#" . $cat->slug; ?>').solution-card(style!='background-color: <?php echo get_field("color", "product_cat_" . $cat->term_id) ?>')
+					.solution-card_inner
+						.solution-card_trumb
+								| <?php 
+								| $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+								| ?>
+								img(src!='<?php echo wp_get_attachment_url( $thumbnail_id ); ?>')
+						.solution-card_title
+							h5 <?php echo $cat->name; ?>
+
+			| <?php
+			|	endforeach;
+			|	endif;
+			| ?>
+
+	section.container.js-card-menu-inside-container
+		.row
+			.col-12.page_middle
+				.sidebar
+					.side-menu
+						.menu-wrapper
+							ul
+								|
+								| <?php
+								|	if($solution_cat) :
+								| foreach ($solution_cat as $cat) :
+								| ?>
+								|
+								li.menu-item
+									a(href!='<?php echo "#" . $cat->slug; ?>').title <?php echo $cat->name; ?>
+								|
+								| <?php
+								|	endforeach;
+								|	endif;
+								| ?>
+								|
+				.right-content
+					|
+					| <?php
+					|	if($solution_cat) :
+					| foreach ($solution_cat as $cat) :
+					| ?>
+					|
+					.js-menu-pages(data-page!='<?php echo $cat->slug; ?>' data-title!='<?php echo $cat->name; ?>')
+						.row.pos-rel.recip-solution-r-content(style='display:none')
+							
+						.row
+							.col-12
+								button.btn_white.js-loader.ldr-r-content.is-hidden(data-page=1 data-category!='<?php echo $cat->slug; ?>' data-recipient='.recip-solution-r-content' data-action='showSolutionInsideCard' )
+									span Показать еще
+
+								//- load animation
+								.lds-facebook
+									div
+									div
+									div
+
+						//- |														
+						//- | <?php showSolutionInsideCard($cat->slug); ?>
+						//- |
+
+					|
+					| <?php
+					|	endforeach;
+					|	endif;
+					| ?>
+					|

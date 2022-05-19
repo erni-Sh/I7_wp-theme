@@ -1,0 +1,157 @@
+footer.container.s-footer
+	.row.s-footer_r1
+		.col-lg-7
+			form(method="get" action!="<?php echo esc_url( home_url( '/' ) ); ?>").s-footer_search
+				p 
+					b Поиск по сайту
+				.input
+					input(type='text' name='s' placeholder="Поиск" value!="<?php if(!empty($_GET['s'])){echo $_GET['s'];}?>" autocomplete='off')
+					//- input(type="hidden" name="type_aws" value="true")
+					button(type='submit').s-footer_search-icon
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/search-black.svg')
+				input(type="submit" value="Найти").btn
+		.col-lg-5
+			.s-footer_contacts
+				.s-footer_mail
+					a(href="mailto:info@iseven.ru")
+						b info@iseven.ru
+				.s-footer_phone
+					a(href="tel:+74957781732")
+						b +7 (495) 778 17 32
+	.row.s-footer_r2.s-footer_menu
+
+		.col-md-3
+			//- Решения
+			| <?php
+			| $category = 25;
+			| $page = 9;
+			| $sub_cats = get_terms('product_cat',[
+			|		'parent' => $category,
+			|		'orderby' => 'ID',
+			|		'hide_empty' => 0
+			| ]);
+			|	?>
+			| 
+			h6.h6
+				a(href!='<?php echo get_permalink($page)  . "#"; ?>') <?php echo get_the_title($page); ?>
+			ul
+				|
+				| <?php
+				| $counter = 0;
+				| if( $sub_cats ):
+				|	foreach( $sub_cats as $cat ) :
+				| if($counter < 5) :
+				| ?>
+				|
+				li 
+					a(href!='<?php echo get_permalink($page) . "#" . $cat->slug; ?>') <?php echo $cat->name; ?>
+
+				| <?php
+				| $counter ++;
+				| endif;
+				| endforeach;
+				| endif;
+				| ?>
+
+		.col-md-2
+			
+			h6.h6
+				a(href!='/about-us') О нас
+			ul
+				li 
+					a(href="/about-us#about_news") Новости
+				li 
+					a(href="/about-us#responsible_business") Ответственный бизнес
+				li 
+					a(href="/about-us#history") История
+				li 
+					a(href="/about-us#agency") Представительства
+				li 
+					a(href="/about-us#contacts") Контакты
+
+		.col-lg-3.col-md-2
+			| <?php 
+			| $sub_cats = get_categories( array(
+			| 	'child_of' => 32,
+			| 	'hide_empty' => 0
+			| ) );
+			| $link = '/support';
+			|	?>
+			| 
+			h6.h6
+				a(href!='<?php echo $link ?>') Поддержка
+
+			ul
+				|
+				| <?php 
+				| if( $sub_cats ):
+				|	foreach( $sub_cats as $cat ) : 
+				| ?>
+				|
+
+				li 
+					a(href!='<?php echo $link . "#" . $cat->slug ?>') <?php echo $cat->name ?>
+
+				| <?php 
+				| endforeach;
+				| endif;
+				| ?>
+
+		.col-lg-4.col-md-5.col-12.s-footer_form
+			form.form
+				.form_top-text
+					p Появились вопросы? Напишите нам.
+				.pos-rel
+					input(name="name" placeholder="" required).form__inputs.name
+					label.form__label Ваше имя
+					.error Напишите свое имя
+				.pos-rel
+					input(name="email" placeholder="" required).form__inputs.e-mail
+					label.form__label Ваш email
+					.error Напишите ваш email
+				.pos-rel
+					textarea(name="message" placeholder="" required).textarea.form__inputs.name
+					label.form__label Ваше сообщение
+					.error Напишите сообщение
+				.form__agree
+					input(type="checkbox").agree.form__checkbox
+					label(for="argee") соглашаюсь с условиями 
+						a(href="/docs" target="_blank").l-underline Политики&nbsp;конфиденциальности 
+					.error Подтвердите свое согласие
+				.form__btn
+					//- input(type="hidden" name="" value="")
+					button.submit
+						b ОТПРАВИТЬ
+			//- .form_success
+			.form_send-success
+				.form_send-inner Письмо успешно отправлено!
+			.form_send-error
+				.form_send-inner
+					| Письмо не отправлено...
+					button.btn_white.js-return-form
+						b Повторить
+
+	.row.s-footer_r3
+		.col-lg-6
+			.s-footer_slogan
+				p Все для управления 
+					br
+					| потоками и процессами
+		.col-lg-6
+			.s-footer_docs
+				ul
+					li
+						a(href="/terms-of-use") Условия использования
+					li
+						a(href="/privacy-policy") Политика конфиденциальности
+					li
+						a(href="/policy-use-cookies") Cookies
+			.s-footer_copyright
+				p © 2007-
+					span#year
+					|  г. Компания И7. Все&nbsp;права&nbsp;защищены
+	
+	a(href!='https://jscorp.ru/' target="_blank").js-logo
+		img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/js-logo.png')
+		//- img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/gricon-logo-site.svg')
+| <?php wp_footer() ?>

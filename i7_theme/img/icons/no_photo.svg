@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="109.089" height="122.592" viewBox="0 0 109.089 122.592">
+  <g id="Сгруппировать_358" data-name="Сгруппировать 358" transform="translate(-801.911 -1772.951)">
+    <g id="Прямоугольник_855" data-name="Прямоугольник 855" transform="translate(801.911 1776.616) rotate(-2)" fill="#e3e3e3" stroke="#fff" stroke-width="4">
+      <rect width="105" height="119" stroke="none"/>
+      <rect x="2" y="2" width="101" height="115" fill="none"/>
+    </g>
+    <g id="Сгруппировать_357" data-name="Сгруппировать 357" transform="translate(-54.293 41.842) rotate(-2)">
+      <g id="photo-camera" transform="translate(824.601 1737.364)">
+        <g id="Сгруппировать_356" data-name="Сгруппировать 356" transform="translate(0 47.104)">
+          <g id="Сгруппировать_355" data-name="Сгруппировать 355" transform="translate(0 0)">
+            <path id="Контур_322" data-name="Контур 322" d="M42.039,53.747H37.056L34.306,49.6A5.717,5.717,0,0,0,29.583,47.1H18.165A5.717,5.717,0,0,0,13.442,49.6l-2.751,4.152H5.709A5.693,5.693,0,0,0,0,59.456V79.593A5.693,5.693,0,0,0,5.709,85.3h36.33a5.693,5.693,0,0,0,5.709-5.709V59.456A5.693,5.693,0,0,0,42.039,53.747ZM23.874,80.631A12.845,12.845,0,1,1,36.745,67.812,12.869,12.869,0,0,1,23.874,80.631Zm17.438-18.84H39.029a1.689,1.689,0,0,1,0-3.373H41.1a1.685,1.685,0,0,1,1.765,1.609A1.643,1.643,0,0,1,41.312,61.792Z" transform="translate(0 -47.104)" fill="#c7c7c7"/>
+          </g>
+        </g>
+      </g>
+      <text id="ИЗОБРАЖЕНИЕ" transform="translate(814.002 1833.895)" fill="#c7c7c7" font-size="8" font-family="GothamPro-Bold, Gotham Pro" font-weight="700"><tspan x="0" y="0">ИЗОБРАЖЕНИЕ</tspan></text>
+      <text id="ВРЕМЕННО" transform="translate(814.002 1844.895)" fill="#c7c7c7" font-size="11.5" font-family="GothamPro-Bold, Gotham Pro" font-weight="700"><tspan x="0" y="0">ВРЕМЕННО</tspan></text>
+      <text id="ОТСУТСВУЕТ" transform="translate(814.002 1853.895)" fill="#c7c7c7" font-size="9.5" font-family="GothamPro-Bold, Gotham Pro" font-weight="700"><tspan x="0" y="0">ОТСУТСВУЕТ</tspan></text>
+    </g>
+  </g>
+</svg>

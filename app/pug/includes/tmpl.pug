@@ -1,0 +1,17 @@
+block inits
+
+doctype html(lang="ru")
+html
+	|
+	|<?php get_header(); ?>
+
+	body
+		.wrapper
+			|
+			|<?php include get_template_directory() . "/sections/section-header.php" ?>
+			|
+			.pagecontent
+				block main   
+	
+		|
+		|<?php get_footer('', 'white'); ?>

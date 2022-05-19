@@ -1,0 +1,271 @@
+doctype html(lang="ru")
+html
+	head
+		title I7
+		meta(charset="UTF-8")
+		meta(name="description", content="")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1")
+
+		//- link(rel='apple-touch-icon' sizes='180x180' href='img/favicon/apple-touch-icon.png')
+		//- link(rel='icon' type='image/png' sizes='32x32' href='img/favicon/favicon-32x32.png')
+		//- link(rel='icon' type='image/png' sizes='16x16' href='img/favicon/favicon-16x16.png')
+		//- link(rel='manifest' href='img/favicon/site.webmanifest.json')
+		link(rel='stylesheet', href='css/styles.min.css')
+
+	body
+		header.wrapper.s-header
+			.s-header_r1
+				.container
+					.row
+						.col
+							.s-header_logo
+								a(href="/")
+									img(src!='/img/favicon/I7_logo.svg')
+						.col-md-10.text-right
+							.s-header_r1c2
+								.s-header_mail
+									a(href="mailto:info@iseven.ru") info@iseven.ru
+								.s-header_phone
+									a(href="tel:+74957781732") +7 (495) 778 17 32
+								.s-header_search
+									mixin searchHeader
+										form
+											input(placeholder="Поиск по сайту")
+											img(src!='/img/icons/search-gray.svg').search-icon
+											//- label Поиск по сайту
+									+searchHeader
+			
+			.hamburger_toogle
+					span
+					span
+					span
+			.hamburger
+				.hamburger_wrap
+					.hamburger_menu
+						ul
+							li
+								a(href='/products.html')
+									| Продукция
+							li
+								a(href='/solutions.html')
+									| Решения
+							li
+								a(href='brands.html')
+									| Бренды
+							li
+								a(href='consolidation.html')
+									| Консолидация
+							li
+								a(href='support.html')
+									| Поддержка
+							li
+								a(href='about_us.html')
+									| О нас
+					.hamburger_contacts
+						.hamburger_mail
+							a(href="mailto:info@iseven.ru") info@iseven.ru
+						.hamburger_phone
+							a(href="tel:+74957781732") +7 (495) 778 17 32
+			.s-header_search.mobile
+				+searchHeader
+			.s-header_r2
+				.container
+					.row.pos-rel
+						.col-lg-8
+							nav.nav.t-menu
+								ul.t-menu_list
+									li.t-menu_item.has-dropdown
+										a(href='/products.html').l-underline
+											| Продукция
+										
+										mixin dropDown()
+											.drop-down.container
+												.row
+													.col-12.d-flex.justify-content-between
+														.drop-down_menu
+															.drop-down_list
+																ul
+																	li 
+																		a(href='#') Приводы пневматические
+																	li 
+																		a(href='#') Распределители пневматические
+																	li 
+																		a(href='#') Подготовка сжатого воздуха
+																	li 
+																		a(href='#') Арматурные клапаны
+																	li 
+																		a(href='#') Балансировочные и регулирующие клапаны
+																	li 
+																		a(href='#') Пропорциональные клапаны
+																	li 
+																		a(href='#') Компактные клапаны
+															.drop-down_list
+																ul
+																	li 
+																		a(href='#') Реле давления
+																	li 
+																		a(href='#') Вакуумная техника
+																	li 
+																		a(href='#') Терморегулирование
+																	li 
+																		a(href='#') Системы поддержания давления и расширительные баки
+																	li 
+																		a(href='#') Клапаны системы безопасности для прессов
+																	li 
+																		a(href='#') Приводы электрические
+																	li 
+																		a(href='#') Анимированные водные стены
+														.drop-down_descr
+															h4 Продукция
+															p Наша продукция идеально подходит для поиска прорывных инженерных решений и играет активную роль в важных отраслях промышленности, которые вносят свой вклад в качество и успех повседневной жизни.
+
+										+dropDown()
+									li.t-menu_item.has-dropdown
+										a(href='/solutions.html').l-underline
+											| Решения
+										+dropDown()
+									li.t-menu_item.has-dropdown
+										a(href='/brands.html').l-underline
+											| Бренды
+										+dropDown()
+									li.t-menu_item.has-dropdown
+										a(href='/consolidation.html').l-underline
+											| Консолидация
+										+dropDown()
+									li.t-menu_item.has-dropdown
+										a(href='/support.html').l-underline
+											| Поддержка
+										+dropDown()
+									li.t-menu_item.has-dropdown
+										a(href='/about_us.html').l-underline
+											| О нас
+										+dropDown()
+									.t-menu_underline
+						.col.s-header_r2c2
+							a(href='#').s-header_cart.l-underline
+								img(src!='/img/icons/cart.svg').s-header_cart-icon
+								.s-header_cart-count Корзина
+									span 0
+						//- .empty-cart Ваша корзина пока пуста
+		
+
+
+
+		.pagecontent
+			block main   
+
+		footer.container.s-footer
+			.row.s-footer_r1
+				.col-lg-7
+					form.s-footer_search
+						p 
+							b Поиск по сайту
+						.input
+							input(placeholder="Поиск")
+							img(src!='/img/icons/search-black.svg').search-icon
+						input(type="submit" value="Найти").btn
+				.col-lg-5
+					.s-footer_contacts
+						.s-footer_mail
+							a(href="mailto:info@iseven.ru")
+								b info@iseven.ru
+						.s-footer_phone
+							a(href="tel:+74957781732")
+								b +7 (495) 778 17 32
+			.row.s-footer_r2.s-footer_menu
+				.col-md-2
+					h6.h6
+						a(href!='#') Решения
+					ul
+						li 
+							a(href="#") Приводы
+						li 
+							a(href="#") Клапаны
+						li 
+							a(href="#") Подготовка воздуха
+						li 
+							a(href="#") Реле давления
+						li 
+							a(href="#") Вакуумная техника
+						li 
+							a(href="#") Фитинги
+				.col-md-3
+					h6.h6
+						a(href!='#') Применения
+					ul
+						li 
+							a(href="#") Индустриальная автоматизация
+						li 
+							a(href="#") Нефтегазовая отрасль
+						li 
+							a(href="#") Металлургия
+						li 
+							a(href="#") Коммерческий транспорт
+						li 
+							a(href="#") Цементно-бетонная отрасль
+						li 
+							a(href="#") Пищевая промышленность
+				.col-lg-3.col-md-2
+					h6.h6
+						a(href!='#') Компания
+					ul
+						li 
+							a(href="#") О нас
+						li 
+							a(href="#") Техническая документация
+						li 
+							a(href="#") Каталоги
+						li 
+							a(href="#") Cертификаты
+				.col-lg-4.col-md-5.col-12.s-footer_form
+					form.form
+						.form_top-text
+							p Появились вопросы? Напишите нам.
+						.pos-rel
+							input(name="name" placeholder="" required).form__inputs.name
+							label.form__label Ваше имя
+							.error Напишите свое имя
+						.pos-rel
+							input(name="email" placeholder="" required).form__inputs.e-mail
+							label.form__label Ваш email
+							.error Напишите ваш email
+						.pos-rel
+							textarea(name="message" placeholder="" required).textarea.form__inputs.name
+							label.form__label Ваше сообщение
+							.error Напишите сообщение
+						.form__agree
+							input(type="checkbox").agree.form__checkbox
+							label(for="argee") соглашаюсь с условиями 
+								a(href="/docs" target="_blank").l-underline Политики&nbsp;конфиденциальности 
+							.error Подтвердите свое согласие
+						.form__btn
+							//- input(type="hidden" name="book" value="89199270")
+							button.submit
+								b ОТПРАВИТЬ
+					.form_success
+
+			.row.s-footer_r3
+				.col-lg-6
+					.s-footer_slogan
+						p Все для управления 
+							br
+							| потоками и процессами
+				.col-lg-6
+					.s-footer_docs
+						ul
+							li
+								a(href="#") Условия использования
+							li
+								a(href="#") Политика конфиденциальности
+							li
+								a(href="#") Cookies
+					.s-footer_copyright
+						p © 2007-
+							span#year
+							| г. Компания И7. Все&nbsp;права&nbsp;защищены
+			
+			.js-logo
+				img(src!='/img/icons/js-logo.svg')
+
+		 
+	script(src='/js/custom.js')

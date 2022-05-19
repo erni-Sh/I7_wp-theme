@@ -1,0 +1,18 @@
+extends ./includes/tmpl.pug
+
+block main
+	//- .container
+	//- 	.row
+	//- 		.col-12
+	//- 			.breadcrumbs
+	//- 				| <?php bcn_display(); ?>
+	section.container
+		.row
+			.col-12.news-inside.page-bottom
+				.title
+					| <?php the_title() ?>
+				.date <?php the_time('j/m/Y'); ?>
+				.trumb
+					img(src!='<?php echo get_the_post_thumbnail_url() ?>;')
+				.content
+					| <?php the_content() ?>

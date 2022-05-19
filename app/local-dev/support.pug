@@ -1,0 +1,111 @@
+extends ./includes/tmpl.pug
+
+block main
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Поддержка
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style='background-image:url("/img/backgrounds/top-background_1.jpg")')
+					h1 Поддержка
+					.text-big
+						| Мы помогаем нашим заказчикам получить максимальную
+						| отдачу от нашей продукции, что&nbsp;позволит снизить 
+						| общую стоимость владения.
+
+	section.container
+		.row
+			.col-12.page_middle
+				.sidebar
+					.side-menu
+						.title Поддержка
+						.menu-wrapper
+							ul
+								li(hidden)
+								li.menu-item
+									a(href='catalogs').title.js-menu-click Каталоги
+								li.menu-item
+									a(href='broshures').title.js-menu-click Брошюры
+								li.menu-item
+									a(href='sertificates').title.js-menu-click Сертификаты																						
+				
+				.right-content
+					.js-menu-pages(data-page='' data-title='')
+						.row.support-cards
+							mixin supportCard(title, link, content, img)
+								.col-xl-4
+									a(href= link).support-card.gray-card.js-menu-click
+										h6.support-card_title= title
+										.support-card_descr.text-small
+											p= content
+										.support-card_trumb
+											img(src!= img)
+
+							+supportCard(
+								'Каталоги', 'catalogs',
+								'Наши каталоги - это отличный способ быстро и легко делать выбор из нашего ассортимента.',
+								'/img/support/catalogs.jpg')
+							+supportCard('Брошюры', 'broshures',
+								'Шаблон текста Шаблон текстаШаблон текста Шаблон текста Шаблон текста',
+								'/img/support/brochures.jpg')
+							+supportCard('Сертификаты', 'sertificates',
+								'Просмотрите наши сертификаты соответствия продукции.',
+								'/img/support/sertificates.jpg')
+
+					.js-menu-pages(data-page='catalogs' data-title='Каталоги')
+						.row
+							mixin supportInsideCard(title)
+								.col-12
+									.support-inside-card
+										.support-inside-card_trumb
+											img(src!='/img/support/catalogs-inside.jpg')
+										.support-inside-card_content
+											h6.support-inside-card_title= title
+											.support-inside-card_descr
+												p Наш каталог промышленной автоматизации содержит наш полный спектр высококачественных продуктов, которые повышают эффективность и производительность в промышленной автоматизации.
+											.support-inside-card_list
+												ul
+													li 
+														a(href='#') Открыть весь каталог
+													li 
+														a(href='#') Открыть Раздел I Пневмоцилиндры
+													li 
+														a(href='#') Открыть Раздел II Клапаны
+													li 
+														a(href='#') Открыть Раздел III Вакуум
+													li 
+														a(href='#') Открыть Раздел IV Подготовка воздуха																																						
+							+supportInsideCard('Промышленная автоматизация')
+							+supportInsideCard('Управление потоками')
+							+supportInsideCard('Термостатика, регулирование и балансировка IMI Hydronics')
+
+					.js-menu-pages(data-page='broshures' data-title='Брошюры')
+						.row
+							mixin supportInsideCard(title, link)
+								.col-12
+									.support-inside-card
+										.support-inside-card_trumb
+											img(src!='/img/support/catalogs-inside.jpg')
+										.support-inside-card_content
+											h6.support-inside-card_title= title
+											.support-inside-card_descr
+												p Наш каталог промышленной автоматизации содержит наш полный спектр высококачественных продуктов, которые повышают эффективность и производительность в промышленной автоматизации.
+											.support-inside-card_list
+												ul
+													li 
+														a(href='#')= link
+																																				
+							+supportInsideCard('Промышленная автоматизация', 'Открыть брошюру')
+							+supportInsideCard('Промышленная автоматизация', 'Открыть брошюру')
+							+supportInsideCard('Промышленная автоматизация', 'Открыть брошюру')
+
+					.js-menu-pages(data-page='sertificates' data-title='Cертификаты')
+						.row
+							+supportInsideCard('Промышленная автоматизация', 'Открыть сертификат')
+							+supportInsideCard('Промышленная автоматизация', 'Открыть сертификат')
+							+supportInsideCard('Промышленная автоматизация', 'Открыть сертификат')
+					

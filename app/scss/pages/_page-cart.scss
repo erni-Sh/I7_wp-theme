@@ -1,0 +1,138 @@
+.cart {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 56px;
+
+	@media (max-width: $lg){
+		flex-direction: column;
+
+		&_title {
+			display: none;
+		}
+	}
+
+	&-list {
+		width: 60%;
+
+		&_header {
+			display: flex;
+			// justify-content: space-between;
+			font-size: 11px;
+			line-height: 19px;
+			padding-bottom: 2px;
+			border-bottom: 2px solid $red;
+			white-space: nowrap;
+		}
+
+		&_col {
+			&-article {
+				width: 28%;
+				padding-left: 2%;
+				display: flex;
+				align-items: center;
+			}
+			&-name {
+				width: 36%;
+				display: flex;
+				align-items: center;
+				padding-right: 3%;
+			}
+			&-count {
+				width: 20%;
+				display: flex;
+				align-items: center;
+				input {
+					max-width: 67px;
+					min-height: 25px;
+					text-align: center;
+				}
+			}
+			&-price {
+				width: 12%;
+				display: flex;
+				align-items: center;
+
+			}
+			&-cancel {
+				width: 4%;
+				display: flex;
+				align-items: center;
+			}
+		}
+
+		&_product {
+			display: flex;
+			justify-content: space-between;
+			font-size: 10px;
+			background-color: $ll-gray;
+			margin-top: 11px;
+			min-height: 47px;
+		}
+
+		@media (max-width: $lg){
+			width: 100%;
+
+			&_header {
+				font-size: 5px;
+				line-height: 12px;
+			}
+
+			&_col {
+				&-article {
+					width: 24%;
+				}
+				&-name {
+					width: 37%;
+				}
+
+				&-count {
+					width: 23%;
+					input {
+						max-width: 53px;
+						min-height: 14px;
+					}
+				}
+				&-price {
+					width: 11%;
+				}
+				&-cancel {
+					width: 5%;
+					img {
+						transform: scale(.5);
+					}
+				}
+			}
+
+			&_product {
+				font-size: 6px;
+				margin-top: 5px;
+				min-height: 26px;
+				.cart-list_col-price {
+					font-size: 10px;
+				}
+
+			}
+		}	
+	}
+
+	&-update {
+		text-align: center;
+		padding-top: 16px;
+	}
+
+	&-form {
+		margin-top: 21px;
+		width: 38%;
+
+		@media (max-width: $lg){
+			margin-top: 45px;
+			width: 100%;
+			max-width: 358px;
+			margin: 21px auto 0;
+		}
+
+		@media (max-width: $md){
+			max-width: auto;
+		}
+	}
+}

@@ -1,0 +1,147 @@
+extends ./includes/tmpl.pug
+
+block main
+	.container
+		.row
+			.col-12
+				.breadcrumbs
+					img(src!='/img/icons/home.svg')
+					p > Решения
+
+	section.container.page_top
+		.row
+			.col-12
+				.top-title(style='background-image:url("/img/backgrounds/top-background_1.jpg")')
+					h1 Решения
+					.text-big
+						| В наш портфель продукции мирового класса входят Norgren, Buschjost, FAS, Herion и Maxseal. 
+						| Доказав свою ценность на протяжении многих лет, они стали одними из самых надежных 
+						| имен в области управления жидкостями и движением. Благодаря этому мы можем 
+						| помочь нашим клиентам решать величайшие инженерные задачи 
+						| мира - надежно, безопасно и эффективно.
+
+	section.container.js-card-menu-container
+		.row.page-solution.solutions
+			mixin solutionCard(img, title, link)
+				.col-xl-3.col-md-4
+					a(href!= link).solution-card.js-card-menu-click(style='background-color: #BE1D25')
+						.solution-card_inner
+							.solution-card_trumb
+								img(src!= img)
+							.solution-card_title
+								h5= title
+
+			+solutionCard(
+				'/img/solutions/oil.jpg',
+				'Нефтегазовая отрасль',
+				'oil-and-gas-industry')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png',
+				'Металлургическая отрасль',
+				'metallurgical-industry')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png',
+				'Цементно-бетонная промышленность', '#')
+			+solutionCard(
+				'/img/solutions/Food-industry.png',
+				'Пищевая промышленность ',
+				'food-industry')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png',
+				'Стекольная промышленость',
+				'glass-industry')
+			+solutionCard(
+				'/img/solutions/metallurgical-industry.png',
+				'Энергетика',
+				'energy-industry')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png',
+				'Медицина',
+				'мedicine')
+			+solutionCard(
+				'/img/solutions/Food-industry.png',
+				'Гражданское и промышленное строительство, коммерческая недвижимость, ЖКХ',
+				'civil-and-industrial-construction')
+			+solutionCard(
+				'/img/solutions/Cement-concrete-industry.png',
+				'Коммерческий транспорт', '#')
+					
+
+	section.container.js-card-menu-inside-container
+		.row
+			.col-12.page_middle
+				.sidebar
+					.side-menu
+						.menu-wrapper
+							ul
+								//- первый открыт, чтобы закрыть и открыть?)))
+								li.menu-item.is-open
+									a(href='oil-and-gas-industry').title.js-menu-click Нефтегазовая отрасль
+								li.menu-item
+									a(href='metallurgical-industry').title.js-menu-click Металлургическая отрасль
+								li.menu-item
+									a(href='food-industry').title.js-menu-click Пищевая промышленность
+								li.menu-item
+									a(href='glass-industry').title.js-menu-click Стекольная промышленость
+								li.menu-item
+									a(href='energy-industry').title.js-menu-click Энергетика
+								li.menu-item
+									a(href='мedicine').title.js-menu-click Медицина
+								li.menu-item
+									a(href='civil-and-industrial-construction').title.js-menu-click Гражданское и промышленное строительство, коммерческая недвижимость, ЖКХ
+
+
+				.right-content
+					.js-menu-pages(data-page='oil-and-gas-industry' data-title='Нефтегазовая отрасль')
+						.row
+							mixin solutionInsideCard()
+								.col-12
+									.solution-inside-card.gray-card
+										.solution-inside-card_trumb
+											img(src!='/img/trumb-cat/Actuators.png')
+										.solution-inside-card_content
+											h6.solution-inside-card_title Пневматические цилиндры
+											.solution-inside-card_descr.text-small
+												p Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста
+											.solution-inside-card_list
+												ul
+													li
+														a(href='#') Цилиндры для пробития алюминиевой корки  901
+													li
+														a(href='#') Стандартные пневматические приводы
+													li
+														a(href='#') Поворотные цилиндры
+								.col-12
+									.solution-inside-card.gray-card
+										.solution-inside-card_trumb
+											img(src!='/img/trumb-cat/Indastrial-valves.png')
+										.solution-inside-card_content
+											h6.solution-inside-card_title Клапаны для пылевых фильтров
+											.solution-inside-card_descr.text-small
+												p Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста Шаблон текста
+											.solution-inside-card_list
+												ul
+													li
+														a(href='#') Клапаны серии 84400
+													li
+														a(href='#') Коллекторные системы
+							+solutionInsideCard()
+
+					.js-menu-pages(data-page='metallurgical-industry' data-title='Металлургическая отрасль')
+						.row
+							+solutionInsideCard()
+					.js-menu-pages(data-page='food-industry' data-title='Пищевая промышленность')
+						.row
+							+solutionInsideCard()
+					.js-menu-pages(data-page='glass-industry' data-title='Стекольная промышленость')
+						.row
+							+solutionInsideCard()
+					.js-menu-pages(data-page='energy-industry' data-title='Энергетика')
+						.row
+							+solutionInsideCard()
+					.js-menu-pages(data-page='мedicine' data-title='Медицина')
+						.row
+							+solutionInsideCard()
+					.js-menu-pages(data-page='civil-and-industrial-construction' data-title='Гражданское и промышленное строительство, коммерческая недвижимость, ЖКХ')
+						.row
+							+solutionInsideCard()

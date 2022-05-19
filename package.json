@@ -1,0 +1,36 @@
+{
+  "name": "leader-qr",
+  "version": "1.0.0",
+  "description": "LeaderID mobile",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sheremet Ernest",
+  "license": "",
+  "devDependencies": {
+    "animate.css": "^4.1.1",
+    "browser-sync": "^2.26.13",
+    "gsap": "^3.5.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-deploy-ftp": "^1.0.1",
+    "gulp-notify": "^3.2.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-wait": "0.0.2",
+    "gutil": "^1.6.4",
+    "jquery.maskedinput": "^1.4.1",
+    "node-sass": "^4.14.1",
+    "vinyl-ftp": "^0.6.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "bootstrap": "^4.5.3",
+    "bootstrap-gulp": "^3.1.7-beta"
+  }
+}

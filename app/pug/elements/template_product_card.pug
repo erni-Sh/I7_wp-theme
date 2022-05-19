@@ -1,0 +1,158 @@
+.col-12
+	//- |
+	//- |<?php global $product; ?>
+	//- |
+	//- <?php WC()->cart->add_to_cart( get_the_ID() )?>
+	//- <?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', the_permalink()) ); ?>
+	form(action!="" method='post' enctype='multipart/form-data').product-card
+		//- .product-card
+		//- <?php print_r($post); ?>
+		.product-card_trumb
+			| <?php $img_src = get_the_post_thumbnail_url();
+			| if ($img_src) : ?>
+			img(src!='<?php echo $img_src ?>')
+			| <?php else : ?>
+			img(src!='<?php echo get_template_directory_uri();?>/img/icons/no_photo.svg')
+			| <?php endif; ?>
+		.product-card_content
+			h3.product-card_title
+				//- a(href!='<?php the_permalink() ?>')
+				<?php the_title() ?>
+			.row
+				.col-xl-7.product-card_descr
+					.product-card_descr-wrap
+						.product-card_catalog
+							| <?php 
+							| $product_id = get_the_ID();
+							| $product_cats = get_the_terms( $product_id, 'product_cat' );
+							//- | print_r($product_cats);
+							| $brands = array();
+							//- | $series_arr = array();
+							| 
+							| foreach ($product_cats as $product_cat ):
+							| if($product_cat -> parent == 22) {
+							| array_push($brands, array(
+							| 	'name' => $product_cat->name,
+							| 	'slug' => $product_cat->slug
+							| ));
+							| }
+							//- | print_r($brands);
+
+							//- зависит от поведения категории Решения и Бренды.
+							//- Сделать независимое определение через get_ancestors( $product_id, 'product_cat'), почему-то не удалось
+							//- | if($product_cat -> parent != 22 && $product_cat -> parent != 25) {
+							//- | array_push($series_arr, array(
+							//- | 	'name' => $product_cat->name,
+							//- | 	'slug' => $product_cat->slug
+							//- | ));
+							//- | }
+
+							| endforeach;
+							| ?>
+							p
+								b Бренд:
+								| <?php
+								| if($brands) :
+								| foreach($brands as $brand) : ?>
+								//- | <?php print_r($brand); ?>
+								a(href!='<?php echo "/brands#" . $brand["slug"]; ?>') <?php echo strtoupper($brand["name"]); ?>
+								| <?php if(next($brands)) echo ', ';
+								| endforeach;
+								| else:
+								|	 echo 'не указан';
+								| endif;
+								| ?>
+
+							p
+								b Артикул:
+								| <?php echo get_post_meta( $product_id, '_sku', true) ?>
+
+
+							| <?php if(get_field('series')) : ?>
+							p
+								b Серия:
+								| <?php echo get_field('series'); ?>
+
+							| <?php endif; ?>
+							//- | <?php
+							//- | if($series_arr) :
+							//- | foreach($series_arr as $series) : ?>
+							//- //- | <?php print_r($brand); ?>
+							//- a(href!='<?php echo "#" . $series["slug"]; ?>') <?php echo str_replace(array('Серия ', 'серия '), '', $series["name"]); ?>
+							//- | <?php if(next($series_arr)) echo ', ';
+							//- | endforeach;
+							//- | else:
+							//- |	 echo 'не указан';
+							//- | endif;
+							//- | ?>
+
+						.product-card_value
+							ul
+								|
+								| <?php
+								| $descr = get_post($product_id)->post_content;
+								| if($descr) :
+								| $descr = preg_split('/\r\n|\r|\n/', $descr);
+								| foreach($descr as $descr_item) :
+								| if($descr_item) :
+								| ?>
+								li <?php echo $descr_item ?>
+								| <?php endif;
+								| endforeach;
+								| endif; ?>
+						.product-card_prop
+							table
+								|
+								| <?php
+								| $descr = get_post($product_id)->post_excerpt;
+								| if($descr) :
+								| $descr = preg_split('/\r\n|\r|\n/', $descr);
+								| foreach($descr as $descr_item) :
+								| if($descr_item) :
+								| $descr_item = explode(":", $descr_item)
+								| ?>
+								tr
+									td 
+										b <?php echo $descr_item[0]; ?>:
+									td <?php echo $descr_item[1]; ?>
+								| <?php endif;
+								| endforeach;
+								| endif; ?>
+
+
+					.product-card_docs
+						|
+						| <?php $tech_link = get_field("tech-link");
+						| if(substr($tech_link, -1) != '/') : ?>
+						| 
+						img(src!='<?php echo get_template_directory_uri(); ?>/img/icons/pdf-icon.svg').product-card_docs-icon
+						a(href!='<?php echo get_site_url() . "/wc-products-import/" . basename($tech_link); ?>' target="_blank") Техническое описание продукта
+						|
+						| <?php endif; ?>
+						|
+				.col-xl-5.product-card_count
+					|
+					| <?php
+					//- number_format обходим баг плагина IMP EXP
+					//- str_replace заплатка для языкового региона
+					//- | echo number_format(get_post_meta( $product_id, '_price', true), 2, ',', ' ');
+					| $price = str_replace(",", " ", number_format(get_post_meta( $product_id, '_price', true))); 
+					//- | echo $price;
+					|	if($price) {
+					//- |		$price .= ' р. с НДС';
+					| 	$price .= " " . get_field('currency') . " " . get_field('vat');
+					|	} else {
+					|		$price = 'Стоимость по запросу';
+					|	};
+					| ?>
+					.product-card_price <?php echo $price ?>
+					.product-card_quantity
+						p Количество:
+						input(type='text' value='1' name='quantity' data-min-count="1")
+					
+					//- a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart(href!='' data-quantity='1' data-product_id!='<?php echo esc_attr( get_the_ID() ); ?>' data-product_sku='' aria-label='' rel='nofollow')
+					//- 	| Добавить в Корзину
+					//- input(hidden name='product_id' value='')
+					button(type='submit' name='add-to-cart' value!='<?php echo esc_attr( get_the_ID() ); ?>').product-card_btn.single_add_to_cart_button
+						| Добавить в Корзину
+
