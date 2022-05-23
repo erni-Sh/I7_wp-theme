@@ -19,3 +19,6 @@ yarn-error.log*
 # project
 Sh_REC.sublime-project
 Sh_REC.sublime-workspace
+
+#secret
+config_secret.js
