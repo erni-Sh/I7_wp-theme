@@ -23,7 +23,7 @@
             <div class="col-12 page_middle">
               <?php 
               $sub_cats = get_categories( array(
-              	'child_of' => 32,
+              	'parent' => 32,
               	'hide_empty' => 0
               ) );
               	?>

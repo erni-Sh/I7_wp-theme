@@ -265,7 +265,7 @@
                 $category = 36;
                 $page_id = 11;
                 $sub_cats = get_categories( array(
-                	'child_of' => $category,
+                	'parent' => $category,
                 	'hide_empty' => 0
                 ) );
                 	?>
@@ -360,7 +360,7 @@
                 $category = 32;
                 $page_id = 15;
                 $sub_cats = get_categories( array(
-                	'child_of' => $category,
+                	'parent' => $category,
                 	'hide_empty' => 0
                 ) );
                 	?>

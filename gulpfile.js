@@ -132,8 +132,8 @@ gulp.task( 'deploy', function () {
         '!i7_theme/woocommerce/**',        
         '!i7_theme/style.css',
 
-        // '!i7_theme/css/**',
-        // '!i7_theme/js/**',
+        '!i7_theme/css/**',
+        '!i7_theme/js/**',
 
         '!sftp-config.json',
     ];

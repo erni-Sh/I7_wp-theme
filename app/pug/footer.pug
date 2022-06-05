@@ -70,22 +70,22 @@ footer.container.s-footer
 					a(href="/about-us#contacts") Контакты
 
 		.col-lg-3.col-md-2
-			| <?php 
-			| $sub_cats = get_categories( array(
-			| 	'child_of' => 32,
+			| <?php
+			| $sub_catss = get_categories( array(
+			| 	'parent' => 32,
 			| 	'hide_empty' => 0
 			| ) );
 			| $link = '/support';
 			|	?>
-			| 
 			h6.h6
 				a(href!='<?php echo $link ?>') Поддержка
+
 
 			ul
 				|
 				| <?php 
-				| if( $sub_cats ):
-				|	foreach( $sub_cats as $cat ) : 
+				| if( $sub_catss ):
+				|	foreach( $sub_catss as $cat ) : 
 				| ?>
 				|
 

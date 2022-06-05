@@ -59,20 +59,19 @@
       </ul>
     </div>
     <div class="col-lg-3 col-md-2">
-      <?php 
-      $sub_cats = get_categories( array(
-      	'child_of' => 32,
+      <?php
+      $sub_catss = get_categories( array(
+      	'parent' => 32,
       	'hide_empty' => 0
       ) );
       $link = '/support';
       	?>
-       
       <h6 class="h6"><a href="<?php echo $link ?>">Поддержка</a></h6>
       <ul>
         
         <?php 
-        if( $sub_cats ):
-        	foreach( $sub_cats as $cat ) : 
+        if( $sub_catss ):
+        	foreach( $sub_catss as $cat ) : 
         ?>
         
         <li> <a href="<?php echo $link . "#" . $cat->slug ?>"><?php echo $cat->name ?></a></li><?php 

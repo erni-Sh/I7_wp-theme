@@ -299,7 +299,7 @@ header.s-header
 								| $category = 36;
 								| $page_id = 11;
 								| $sub_cats = get_categories( array(
-								| 	'child_of' => $category,
+								| 	'parent' => $category,
 								| 	'hide_empty' => 0
 								| ) );
 								|	?>
@@ -403,7 +403,7 @@ header.s-header
 								| $category = 32;
 								| $page_id = 15;
 								| $sub_cats = get_categories( array(
-								| 	'child_of' => $category,
+								| 	'parent' => $category,
 								| 	'hide_empty' => 0
 								| ) );
 								|	?>
@@ -430,10 +430,7 @@ header.s-header
 														| endforeach;
 														| endif;
 														| ?>
-												//- .drop-down_list
-												//- 	ul
-												//- 		li 
-												//- 			a(href='#') Реле давления
+
 
 											.drop-down_descr
 												h4 <?php echo get_the_title($page_id); ?>
