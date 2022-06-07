@@ -135,7 +135,8 @@
 
 			& > .icon {
 				height: 100%;
-				padding-right: 22px;
+				max-width: 68px;
+				margin-right: 22px;
 			}
 			& > .logo {
 				height: 45%;
@@ -156,6 +157,11 @@
 				height: 43px;
 				margin-top: 13px;
 				margin-bottom: 16px;
+
+				& > .icon {
+					max-width: 43px;
+				}
+
 			}
 
 			&_descr {

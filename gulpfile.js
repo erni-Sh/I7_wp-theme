@@ -107,6 +107,7 @@ gulp.task( 'deploy', function () {
         '!i7_theme/sections/**',
         '!i7_theme/footer.php',
         '!i7_theme/functions.php',
+        '!i7_theme/functions(backup).php',
         '!i7_theme/header.php',
         '!i7_theme/index.php',
         '!i7_theme/news-inside.php',
@@ -132,7 +133,7 @@ gulp.task( 'deploy', function () {
         '!i7_theme/woocommerce/**',        
         '!i7_theme/style.css',
 
-        '!i7_theme/css/**',
+        // '!i7_theme/css/**',
         '!i7_theme/js/**',
 
         '!sftp-config.json',

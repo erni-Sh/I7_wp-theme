@@ -330,7 +330,7 @@
 		
 		a {
 			display: flex;
-			align-items: middle;
+			align-items: center;
 		}
 
 		&:after {
@@ -353,6 +353,12 @@
 
 		.icon {
 			margin-right: 32px;
+			height: 30px;
+			width: 30px;
+		}
+
+		.logo {
+			height: 14px;
 		}
 
 		@media (max-width: $md){

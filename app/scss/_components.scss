@@ -1037,12 +1037,19 @@
 
 	&_logo {
 		display: flex;
+		align-items: center;
 		margin-top: 12px;
 		margin-bottom: 6px;
 		transition: 100ms ease all;
 
 		.icon {
 			margin-right: 13px;
+			width: 30px;
+			height: 30px;
+		}
+
+		.logo {
+			height: 14px;
 		}
 	}
 
